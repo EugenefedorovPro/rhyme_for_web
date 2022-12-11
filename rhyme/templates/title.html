@@ -1,0 +1,63 @@
+<!DOCTYPE http>
+<html lang="ru">
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'mystyles.css' %}">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width", initial_scale="1.0" />
+<meta author="Eugene Proskulikov" />
+<title>rhyme russian</title>
+</head>
+<body>
+    <div>
+<<<<<<< HEAD
+        <fieldset id="check_stress">
+            <legend>Варианты ударений в слове {{ unstressed_word }}</legend>
+=======
+        <p>Нейросеть поставила ударение в слове {{ unstressed_word }}</p>
+        <p>Возможно она ошиблась.</p>
+        <p>Подтвердите сделанный выбор или выберите правильный вариант</p><br>
+            <fieldset id="check_stress">
+            <legend>Вариаты ударений в слове {{ unstressed_word }}</legend>
+>>>>>>> 26e9964edea31fb01fb9c5e2190530ae0e3952f9
+            <form action="results" target="_self" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" label="Отправить">
+            </form>
+<<<<<<< HEAD
+        </fieldset> 
+        {% comment %} <p>Нейросеть поставила ударение в слове {{ unstressed_word }}</p>
+        <p>Возможно она ошиблась.</p>
+        <p>Подтвердите сделанный выбор или выберите правильный вариант</p><br> {% endcomment %}
+    
+            {% comment %} <fieldset id="choose_depth_speed">
+                <legend>Выбор между количеством рифм и скоростью вычислений</legend>
+                <form action="results" method="POST">
+                    {% csrf_token %}
+                    {{ form_2}} {% endcomment %}
+
+                    {% comment %} <datalist id="tickmarks">
+                      <option>-</option>
+                      <option>-</option>
+                      <option>-</option>
+                      <option>-</option>
+                      <option>-</option>
+                    </datalist> {% endcomment %}
+                    
+            {% comment %} <output id="rangevalue">100</output><br><br>
+            <input type = "submit" label = "Отправить"> {% endcomment %}
+
+                {% comment %} </form>
+            </fieldset> {% endcomment %}
+            
+
+
+
+=======
+            {% comment %} </fieldset> {% endcomment %}
+>>>>>>> 26e9964edea31fb01fb9c5e2190530ae0e3952f9
+    </div>
+
+</body>
+</html>
