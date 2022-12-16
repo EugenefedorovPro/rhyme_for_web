@@ -1,0 +1,32 @@
+<!DOCTYPE http>
+<html lang="ru">
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'mystyles.css' %}">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width", initial_scale="1.0" />
+<meta author="Eugene Proskulikov" />
+<title>rhyme russian</title>
+</head>
+<body>
+    <div>   
+        <fieldset>
+            <legend>Выбери: 1 - мало рифм и быстро, 5 много рифм и медленно</legend>
+            <form action="results" method="POST">
+            {% csrf_token %}
+            {{ depth_time }} 
+            <output id="rangevalue">2</output><br><br>
+        </fieldset> 
+    </div>
+
+    <div>
+        <fieldset>
+            <legend>Напиши слово для подбора рифм</legend>
+            {% csrf_token %}
+            {{ input_word_without_stress.as_p }} 
+            <input type = "submit" label = "Отправить"> 
+            </form>
+        </fieldset> 
+    </div>
+</body>
+</html>

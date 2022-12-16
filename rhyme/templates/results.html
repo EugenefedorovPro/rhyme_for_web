@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang='ru'>
 <head>
-{% load static %}
-<link rel="stylesheet" href="{% static 'mystyles.css' %}">
-<meta charset='utf-8'>
-<meta author="Eugene Proskulikov">
-<meta name="viewport" content="width=device-width" initial_scale="1.0">
-<title>rhyme results</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mystyles.css' %}">
+    <meta charset='utf-8'>
+    <meta author="Eugene Proskulikov">
+    <meta name="viewport" content="width=device-width" initial_scale="1.0">
+    <title>rhyme results</title>
 </head>
 <body>
-    <h1>Таблица с рифмами<h1>
-    <p id="id_results">{{ table_of_results }}</p>
+    <p><b>Таблица с рифмами</b><p>
+    <p>Ударение в слове: <b>{{ stressed_word }}</b></p>
+    <p id="table_of_rhymes">{{ table_of_rhymes|linebreaks }}</p>
 </body>
 
 
