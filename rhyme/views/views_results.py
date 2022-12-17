@@ -76,12 +76,15 @@ def results(request):
     table_of_rhymes = "\n".join(table_of_rhymes_initial["rhymes"])
 
     # insert rhyme data to db
-    insert_to_sql.insert_rhyme_output_to_sql(
-        table_of_rhymes_initial, stressed_word, depth_time_for_rhyming
-    )
+    # insert_to_sql.insert_rhyme_output_to_sql(
+    #     table_of_rhymes_initial, stressed_word, depth_time_for_rhyming
+    # )
 
     return render(
         request,
         "results.html",
-        {"stressed_word": stressed_word, "table_of_rhymes": table_of_rhymes},
+        {
+            "stressed_word": stressed_word,
+            "table_of_rhymes": table_of_rhymes_initial.to_html(),
+        },
     )

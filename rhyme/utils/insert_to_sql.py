@@ -4,10 +4,12 @@ from ..models import Rhyme
 def insert_rhyme_output_to_sql(
     table_of_rhymes_initial, stressed_word, depth_time_for_rhyming
 ):
+
     for i in range(0, len(table_of_rhymes_initial)):
         current_row = table_of_rhymes_initial.iloc[i]
         rhyme = current_row[0]
         pattern = current_row[1]
+        # if Rhyme.objects.filter(word_with_stress = stressed_word),
         part_speech = current_row[2]
         score = current_row[3]
 
