@@ -4,7 +4,7 @@ from django.template import loader
 from django.urls import reverse
 
 from ..models import Rhyme
-from ..utils import insert_to_sql
+from ..utils import insert_to_sql, setup_depth_rhyme, fetch_rhyme_from_db
 
 from django.http import HttpResponseRedirect
 from rhyme_rus.rhyme import rhyme_to_table, stress_word_by_wiki, stress_word_by_nn
@@ -45,46 +45,35 @@ def results(request):
                 tuple_of_omographs=tuple_of_omographs,
             )
 
-    # tuning depth of rhyming - time of processing parameter as an input for thyme_to_table
-    if depth_time_for_rhyming == 2:
-        max_length_pat_of_ipa = 6
-        list_score_numbers = range(0, 45, 5)
-        max_number_hard_sounds_in_one_pat = 1
-    if depth_time_for_rhyming == 1:
-        max_length_pat_of_ipa = 5
-        list_score_numbers = range(0, 30, 5)
-        max_number_hard_sounds_in_one_pat = 1
-    if depth_time_for_rhyming == 3:
-        max_length_pat_of_ipa = 6
-        list_score_numbers = range(0, 50, 5)
-        max_number_hard_sounds_in_one_pat = 1
-    if depth_time_for_rhyming == 4:
-        max_length_pat_of_ipa = 7
-        list_score_numbers = range(0, 100, 5)
-        max_number_hard_sounds_in_one_pat = 1
-    if depth_time_for_rhyming == 5:
-        max_length_pat_of_ipa = 7
-        list_score_numbers = range(0, 100, 5)
-        max_number_hard_sounds_in_one_pat = 2
+    (
+        max_length_pat_of_ipa,
+        list_score_numbers,
+        max_number_hard_sounds_in_one_pat,
+    ) = setup_depth_rhyme.setup_depth_rhyme(depth_time_for_rhyming)
 
-    table_of_rhymes_initial = rhyme_to_table(
-        stressed_word,
-        max_length_pat_of_ipa=max_length_pat_of_ipa,
-        list_score_numbers=list_score_numbers,
-        max_number_hard_sounds_in_one_pat=max_number_hard_sounds_in_one_pat,
+    # fetchinh rhymes from db if available
+    table_of_rhymes = fetch_rhyme_from_db.fetch_rhyme_from_db(
+        stressed_word, depth_time_for_rhyming
     )
-    table_of_rhymes = "\n".join(table_of_rhymes_initial["rhymes"])
+    if table_of_rhymes.iloc[0, 1] == False:
 
-    # insert rhyme data to db
-    # insert_to_sql.insert_rhyme_output_to_sql(
-    #     table_of_rhymes_initial, stressed_word, depth_time_for_rhyming
-    # )
+        table_of_rhymes = rhyme_to_table(
+            stressed_word,
+            max_length_pat_of_ipa=max_length_pat_of_ipa,
+            list_score_numbers=list_score_numbers,
+            max_number_hard_sounds_in_one_pat=max_number_hard_sounds_in_one_pat,
+        )
+
+        # insert rhyme data to db
+        insert_to_sql.insert_rhyme_output_to_sql(
+            table_of_rhymes, stressed_word, depth_time_for_rhyming
+        )
 
     return render(
         request,
         "results.html",
         {
             "stressed_word": stressed_word,
-            "table_of_rhymes": table_of_rhymes_initial.to_html(),
+            "table_of_rhymes": table_of_rhymes.to_html(),
         },
     )
