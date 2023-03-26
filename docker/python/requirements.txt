@@ -1,0 +1,6 @@
+rhyme_rus@ git+https://github.com/EugenefedorovPro/rhyme_rus.git
+pytest
+coverage
+ipython
+Django~=4.1.7
+
