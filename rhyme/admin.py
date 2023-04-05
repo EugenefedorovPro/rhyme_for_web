@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import Rhyme
+from .models import Word, Rhymes
 
-# Register your models here.
-admin.site.register(Rhyme)
+class RhymesAdmin(admin.TabularInline):
+    model = Rhymes
+    extra = 3
+
+class WordAdmin(admin.ModelAdmin):
+    inlines = [RhymesAdmin]
+    list_display = ['unstressed_word', 'all_stresses', 'stressed_word']
+    search_fields = ['unstressed_word']
+
+
+admin.site.register(Word, WordAdmin)

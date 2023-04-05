@@ -1,16 +1,29 @@
 from django.db import models
 
 
-class Rhyme(models.Model):
-    word_without_stress = models.CharField(
-        max_length=100, default="any unstressed word"
-    )
-    word_with_stress = models.CharField(max_length=100, default="any stressed word")
-    depth_time = models.IntegerField(default=2)
-    rhyme = models.CharField(max_length=100, default="any rhymed word")
-    pattern = models.JSONField()
-    part_speech = models.CharField(max_length=50, default="any part of speech")
-    score = models.IntegerField()
+class Meta:
+    indexes = [
+        models.Index(fields = ['unstressed_word', ]),
+        models.Index(fields = ['stressed_word', ]),
+        models.Index(fields = ['rhyme', ]),
+        models.Index(fields = ['score', ]),
+        models.Index(fields = ['assonance', ]),
+        ]
+class Word(models.Model):
+    unstressed_word = models.CharField(max_length = 100)
+    all_stresses = models.JSONField(default = '')
+    stressed_word = models.CharField(max_length = 100, default = '')
 
     def __str__(self):
-        return self.word_with_stress + "_" + str(self.depth_time)
+        return self.unstressed_word
+
+
+class Rhymes(models.Model):
+    word = models.ForeignKey(Word, on_delete = models.CASCADE)
+    rhyme = models.CharField(max_length = 100)
+    score = models.IntegerField()
+    assonance = models.IntegerField()
+    pattern = models.JSONField()
+
+    def __str__(self):
+        return self.rhyme

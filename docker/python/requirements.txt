@@ -3,4 +3,5 @@ pytest
 coverage
 ipython
 Django~=4.1.7
+psycopg2~=2.9.5
 
