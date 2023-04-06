@@ -1,31 +1,24 @@
 {% load static %}
-<!DOCTYPE http>
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<link rel="stylesheet" href="{% static 'mystyles.css' %}">
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width", initial_scale="1.0" />
-<title>rhyme russian</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" initial_scale="1.0">
+    <title>rhyme russian</title>
 </head>
 <body>
-    <div>   
-        <fieldset>
-            <legend>Выбери: 1 - мало рифм и быстро, 5 много рифм и медленно</legend>
-            <form action="results" method="POST">
+<div>
+    <fieldset>
+        <legend><strong>Напиши слово для подбора рифм</strong></legend>
+        <form action="{% url 'rhyme:rhyme_results' %}" method="post">
             {% csrf_token %}
-            {{ depth_time }} 
-            <output id="rangevalue">2</output><br><br>
-        </fieldset> 
-    </div>
-
-    <div>
-        <fieldset>
-            <legend>Напиши слово для подбора рифм</legend>
-            {% csrf_token %}
-            {{ input_word_without_stress.as_p }} 
-            <input type = "submit" label = "Отправить"> 
-            </form>
-        </fieldset> 
-    </div>
+            <label for="to_rhyme"></label>
+            <input type="text" id="to_rhyme" name="rhyme_word"><br>
+        <input type = "submit" value = "Отправить">
+        </form>
+    </fieldset>
+</div>
 </body>
 </html>
