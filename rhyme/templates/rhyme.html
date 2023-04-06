@@ -11,14 +11,30 @@
 <body>
 <div>
     <fieldset>
-        <legend><strong>Напиши слово для подбора рифм</strong></legend>
+        <legend><strong>Напиши слово для подбора рифм</strong></legend><br>
         <form action="{% url 'rhyme:rhyme_results' %}" method="post">
             {% csrf_token %}
             <label for="to_rhyme"></label>
-            <input type="text" id="to_rhyme" name="rhyme_word"><br>
+            <input type="text" id="to_rhyme" name="rhyme_word"><br><br>
         <input type = "submit" value = "Отправить">
         </form>
-    </fieldset>
+    </fieldset><br>
 </div>
+    <div>
+        {% if all_stresses %}
+            <p><strong>В словаре нет слова {{ unstressed_word }}</strong></p>
+            <fieldset>
+                <legend><strong>Выберите вариант с правильным ударением:</strong></legend>
+                <form action="{% url 'rhyme:rhyme_results' %}" method="post">
+                    {% for stressed_variant in all_stresses %}
+                        {% csrf_token %}
+                        <input type="radio" id="variant"{{ forloop.counter }} name = "variant" value="stressed_variant">
+                        <label for="variant"{{ forloop.counter }}>{{ stressed_variant }}</label><br>
+                    {% endfor %}<br>
+                    <input type="submit" value="Отправить">
+                </form>
+            </fieldset>
+        {% endif %}
+    </div>
 </body>
 </html>
