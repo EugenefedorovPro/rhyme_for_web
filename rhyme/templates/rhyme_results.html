@@ -9,8 +9,9 @@
     <title>rhyme_results</title>
 </head>
 <body>
-    <p><b>Таблица с рифмами</b><p>
-    <p>Ударение в слове: <b>{{ stressed_word }}</b></p>
+    <h1>Таблица с рифмами</h1>
+    <p>Ударение в слове: <strong>{{ stressed_word }}</strong></p>
+    <p>Количество рифм: <strong>{{ number_rhymes }}</strong></p>
     <p id="table_of_rhymes">{{ table_of_rhymes|safe }}</p>
 </body>
 </html>
