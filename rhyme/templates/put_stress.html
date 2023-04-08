@@ -10,24 +10,6 @@
 </head>
 <body>
     <div>
-        <fieldset id="check_stress">
-            <p id = "nn_result">Нейросеть поставила ударение <b>{{ word_stressed_by_nn }}</b></p>
-            <legend>Варианты ударений в слове <b>{{ unstressed_word }}</b></legend>
-            <form action="results" target="_self" method="POST">
-                {% csrf_token %}
-                <p>{{ select }}</p>
-                <input type="submit" label="Отправить">
-            </form>
-        </fieldset> 
     </div>
-
-{% comment %} js to remove string when nn does not word, 
-but wiki yields omographs instead {% endcomment %}
-<script>
-    if ({{ word_stressed_by_nn }} == 0) {
-        document.getElementById("nn_result").innerHTML = "";
-    }
-</script>
-
 </body>
 </html>

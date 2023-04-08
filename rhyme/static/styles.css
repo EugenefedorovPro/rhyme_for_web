@@ -1,6 +1,120 @@
-body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: small;
-    background-color: lightgoldenrodyellow;
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
+
+
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+}
+
+body {
+    background: url("background.jpeg");
+    background-size: cover;
+}
+
+.grid_container {
+    position: sticky;
+    top: 10%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: blue solid;
+    place-items: center;
+    /*grid-template-rows: 1fr;*/
+    /*background-color: green;*/
+    /*padding: 10px;*/
+    /*background-size: cover;*/
+}
+
+:root {
+    --vh: calc(100vw / 3 - (100vw*0.01));
+    --vw: calc(100vw / 3 - (100vw*0.01))
+}
+.grid_container p {
+    place-items: center;
+    height: var(--vh);
+    width: var(--vh);
+    border: green solid;
+}
+
+.grid_item {
+    /*background-color: palegoldenrod;*/
+    /*border: solid;*/
+    /*padding: 20px;*/
+    display: grid;
+    /*margin: 0.5vw;*/
+    font-size: medium;
+    text-align: center;
+    background-size: contain;
+    background-position: top;
+    background-repeat: no-repeat;
+    border: red solid;
+    place-items: center;
+}
+
+#find_rhyme, #put_stress, #transcribe {
+    position: relative;
+}
+
+#find_rhyme {
+    background-image: url("rhyme.jpeg");
+}
+
+#put_stress {
+    background-image: url("stress.jpeg");
+}
+
+#transcribe {
+    background-image: url("transcribe.jpeg");
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url("futura_sv/Futura_Book.ttf") format("truetype");
+}
+
+#text_rhyme, #text_stress, #text_transcribe {
+    font-family: 'Futura', SansSerif;
+    font-size: medium;
+}
+
+#text_rhyme{
+    position: relative;
+    top: 8%;
+    left: 8%;
+}
+
+#text_stress {
+    position: relative;
+    top: 15%;
+    left: -11%;
+}
+
+#text_transcribe {
+    position: relative;
+    top: 58%;
+    left: -8%;
+}
+
+
+@media (max-width: 768px) {
+    .grid_container {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+    }
+    .grid_container p {
+        height: 100vw;
+        width: 100vw;
+    }
+}
