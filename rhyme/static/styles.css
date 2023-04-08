@@ -27,7 +27,7 @@ body {
 }
 
 a {
-    color: darkslategray;
+    color: maroon;
     text-decoration: none;
 }
 
@@ -35,33 +35,39 @@ a {
     position: sticky;
     top: 15vh;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     place-items: center;
     /*border: blue solid;*/
+
 }
 
 :root {
-    --vh: calc(100vw / 3 - (100vw*0.01));
-    --vw: calc(100vw / 3 - (100vw*0.01))
-}
-
-.box_wrapping_text {
-    place-items: center;
-    height: var(--vh);
-    width: var(--vw);
-    /*border: green solid;*/
+    --vh: calc(100vh / 2 - (100vw*0.06));
+    --vw: calc(100vw / 2 - (100vw*0.06))
 }
 
 .grid_item {
     display: grid;
-    font-size: medium;
     text-align: center;
     background-size: contain;
     background-position: top;
     background-repeat: no-repeat;
     place-items: center;
     /*border: red solid;*/
+    margin: 3vw;
+
 }
+
+.box_wrapping_text {
+    place-items: center;
+    height: var(--vw);
+    width: var(--vw);
+    /*border: green solid;*/
+
+}
+
+
 
 /*#find_rhyme, #put_stress, #transcribe {*/
 /*    position: relative;*/
@@ -72,9 +78,9 @@ a {
     src: url("futura_sv/Futura_Book.ttf") format("truetype");
 }
 
-#text_rhyme, #text_stress, #text_transcribe {
+#text_rhyme, #text_stress, #text_transcribe, #text_about {
     font-family: 'Futura', SansSerif;
-    font-size: medium;
+    font-size: larger;
     font-weight: bold;
 }
 
@@ -90,6 +96,9 @@ a {
     background-image: url("transcribe.jpeg");
 }
 
+#about {
+    background-image: url("about.jpeg");
+}
 
 #text_rhyme{
     position: relative; top: 10%;
@@ -108,6 +117,10 @@ a {
     left: 5%;
 }
 
+#text_about {
+    position: relative;
+    top: 43%;
+}
 
 @media (max-width: 768px) {
 
