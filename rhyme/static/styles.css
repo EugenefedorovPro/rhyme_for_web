@@ -17,54 +17,65 @@ body {
     line-height: 1.5;
     color: #333;
     background-color: #fff;
+    /*border: blue solid;*/
 }
 
+/*main css styling*/
 body {
     background: url("background.jpeg");
     background-size: cover;
 }
 
+a {
+    color: darkslategray;
+    text-decoration: none;
+}
+
 .grid_container {
     position: sticky;
-    top: 10%;
+    top: 15vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border: blue solid;
     place-items: center;
-    /*grid-template-rows: 1fr;*/
-    /*background-color: green;*/
-    /*padding: 10px;*/
-    /*background-size: cover;*/
+    /*border: blue solid;*/
 }
 
 :root {
     --vh: calc(100vw / 3 - (100vw*0.01));
     --vw: calc(100vw / 3 - (100vw*0.01))
 }
-.grid_container p {
+
+.box_wrapping_text {
     place-items: center;
     height: var(--vh);
-    width: var(--vh);
-    border: green solid;
+    width: var(--vw);
+    /*border: green solid;*/
 }
 
 .grid_item {
-    /*background-color: palegoldenrod;*/
-    /*border: solid;*/
-    /*padding: 20px;*/
     display: grid;
-    /*margin: 0.5vw;*/
     font-size: medium;
     text-align: center;
     background-size: contain;
     background-position: top;
     background-repeat: no-repeat;
-    border: red solid;
     place-items: center;
+    /*border: red solid;*/
 }
 
-#find_rhyme, #put_stress, #transcribe {
-    position: relative;
+/*#find_rhyme, #put_stress, #transcribe {*/
+/*    position: relative;*/
+/*}*/
+
+@font-face {
+    font-family: 'Futura';
+    src: url("futura_sv/Futura_Book.ttf") format("truetype");
+}
+
+#text_rhyme, #text_stress, #text_transcribe {
+    font-family: 'Futura', SansSerif;
+    font-size: medium;
+    font-weight: bold;
 }
 
 #find_rhyme {
@@ -79,42 +90,33 @@ body {
     background-image: url("transcribe.jpeg");
 }
 
-@font-face {
-    font-family: 'Futura';
-    src: url("futura_sv/Futura_Book.ttf") format("truetype");
-}
-
-#text_rhyme, #text_stress, #text_transcribe {
-    font-family: 'Futura', SansSerif;
-    font-size: medium;
-}
 
 #text_rhyme{
-    position: relative;
-    top: 8%;
+    position: relative; top: 10%;
     left: 8%;
 }
 
 #text_stress {
     position: relative;
-    top: 15%;
+    top: 17%;
     left: -11%;
 }
 
 #text_transcribe {
     position: relative;
-    top: 58%;
-    left: -8%;
+    top: 30%;
+    left: 5%;
 }
 
 
 @media (max-width: 768px) {
+
     .grid_container {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(3, 1fr);
     }
-    .grid_container p {
+
+    .box_wrapping_text {
         height: 100vw;
-        width: 100vw;
-    }
+        width: 100vw; }
 }
