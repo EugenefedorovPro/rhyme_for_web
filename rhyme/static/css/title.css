@@ -1,36 +1,3 @@
-/* CSS Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-}
-
-
-
-body {
-    font-family: sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    background-color: #fff;
-    /*border: blue solid;*/
-}
-
-/*main css styling*/
-body {
-    background: url("background.jpeg");
-    background-size: cover;
-}
-
-a {
-    color: maroon;
-    text-decoration: none;
-}
-
 .grid_container {
     position: sticky;
     top: 15vh;
@@ -40,11 +7,6 @@ a {
     place-items: center;
     /*border: blue solid;*/
 
-}
-
-:root {
-    --vh: calc(100vh / 2 - (100vw*0.06));
-    --vw: calc(100vw / 2 - (100vw*0.06))
 }
 
 .grid_item {
@@ -59,6 +21,13 @@ a {
 
 }
 
+
+/*proportinal size of the box containing background*/
+:root {
+    --vh: calc(100vh / 2 - (100vw*0.06));
+    --vw: calc(100vw / 2 - (100vw*0.06))
+}
+
 .box_wrapping_text {
     place-items: center;
     height: var(--vw);
@@ -68,38 +37,30 @@ a {
 }
 
 
-
-/*#find_rhyme, #put_stress, #transcribe {*/
-/*    position: relative;*/
-/*}*/
-
-@font-face {
-    font-family: 'Futura';
-    src: url("futura_sv/Futura_Book.ttf") format("truetype");
+/*background images*/
+#find_rhyme {
+    background-image: url("../pics/rhyme.jpeg");
 }
 
+#put_stress {
+    background-image: url("../pics/stress.jpeg");
+}
+
+#transcribe {
+    background-image: url("../pics/transcribe.jpeg");
+}
+
+#about {
+    background-image: url("../pics/about.jpeg");
+}
+
+/*font styling*/
 #text_rhyme, #text_stress, #text_transcribe, #text_about {
-    font-family: 'Futura', SansSerif;
     font-size: larger;
     font-weight: bold;
 }
 
-#find_rhyme {
-    background-image: url("rhyme.jpeg");
-}
-
-#put_stress {
-    background-image: url("stress.jpeg");
-}
-
-#transcribe {
-    background-image: url("transcribe.jpeg");
-}
-
-#about {
-    background-image: url("about.jpeg");
-}
-
+/*text alignment to background*/
 #text_rhyme{
     position: relative; top: 10%;
     left: 8%;
@@ -121,6 +82,7 @@ a {
     position: relative;
     top: 43%;
 }
+
 
 @media (max-width: 768px) {
 

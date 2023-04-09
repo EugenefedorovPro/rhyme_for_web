@@ -1,0 +1,42 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+    /*border: blue solid;*/
+}
+
+/*overall css styling*/
+
+body {
+    position: relative;
+    background: url("../pics/background.jpeg");
+    background-size: cover;
+    font-family: 'Futura', SansSerif;
+    place-items: center;
+}
+
+a {
+    color: maroon;
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url("../futura_sv/Futura_Book.ttf") format("truetype");
+}
+
+
+

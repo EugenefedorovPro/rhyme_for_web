@@ -1,0 +1,54 @@
+/*rhyme*/
+
+div {
+    position: absolute;
+    top: 20vh;
+    left: 15vw;
+    right: 15vw;
+    /*border: red solid;*/
+
+}
+
+/*no word in dict*/
+p {
+    color: #49616B;
+}
+
+/* choose variant with proper stress */
+fieldset {
+    color: #49616B;
+    border-color: maroon;
+    border-style: dotted;
+}
+
+/*variants*/
+form {
+    color: #49616B;
+}
+
+/*block for text input*/
+input[type='text'] {
+    color: #49616B;
+    border-style: dotted;
+    border-color: maroon;
+    background-color: #F9FBE6;
+    padding: 5px;
+}
+
+input[type='text']:focus {
+    color: #49616B;
+    border-style: dotted;
+    border-color: maroon;
+    background-color: #F9FBE6;
+    padding: 5px;
+}
+
+/*submit button*/
+.submit {
+    color: maroon;
+    background-color: #F9FBE6;
+    border-style: none;
+    border-color: maroon;
+    padding: 5px;
+}
+

@@ -1,5 +1,6 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/rhyme.css' %}">
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -9,22 +10,24 @@
     <title>rhyme russian</title>
 </head>
 <body>
+
 <div id="input_word_to_rhyme">
-    <fieldset>
+    <fieldset id="fieldset_input_word">
         <legend><strong>Напиши слово для подбора рифм</strong></legend><br>
         <form action="{% url 'rhyme:rhyme_results' %}" method="post">
             {% csrf_token %}
             <label for="to_rhyme"></label>
             <input type="text" id="to_rhyme" name="target_word"><br><br>
-        <input type = "submit" value = "Отправить">
+        <input class="submit" id="input_button_rhyme" type = "submit" value = "Отправить">
         </form>
     </fieldset><br>
 </div>
-<div>
+
+<div id="choose_stress">
     {% if all_stresses %}
-        <p><strong>В словаре нет слова {{ unstressed_word }}</strong></p>
+        <p><strong>В словаре нет слова "{{ unstressed_word }}"</strong></p>
         <fieldset>
-            <legend><strong>Выберите вариант с правильным ударением:</strong></legend>
+            <legend><strong>Выберите вариант с правильным ударением:</strong></legend><br>
             <form action="{% url 'rhyme:rhyme_results' %}" method="post">
                 {% for stressed_variant in all_stresses %}
                     {% csrf_token %}
@@ -34,11 +37,12 @@
                     </script>
                     <input type="radio" id="variant"{{ forloop.counter }} name = "target_word" value="{{ stressed_variant }}">
                     <label for="variant"{{ forloop.counter }}>{{ stressed_variant }}</label><br>
-                {% endfor %}<br>
-                <input type="submit" value="Отправить">
+                {% endfor %}<br><br>
+                <input class="submit" type="submit" value="Отправить">
             </form>
         </fieldset>
     {% endif %}
 </div>
+
 </body>
 </html>
