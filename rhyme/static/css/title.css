@@ -22,11 +22,6 @@
 }
 
 
-/*proportinal size of the box containing background*/
-:root {
-    --vh: calc(100vh / 2 - (100vw*0.06));
-    --vw: calc(100vw / 2 - (100vw*0.06))
-}
 
 .box_wrapping_text {
     place-items: center;

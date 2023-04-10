@@ -3,7 +3,7 @@ from .models import Word, Rhymes
 
 class RhymesAdmin(admin.TabularInline):
     model = Rhymes
-    extra = 3
+    extra = 1
 
 class WordAdmin(admin.ModelAdmin):
     inlines = [RhymesAdmin]

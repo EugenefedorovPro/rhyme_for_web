@@ -1,0 +1,13 @@
+table {
+    /*border-collapse: collapse;*/
+    position: absolute;
+    left: 1vw;
+    width: 95vw;
+    border-collapse: collapse;
+}
+
+th, td {
+    border-style: dotted;
+    border-color: var(--light);
+    text-align: left;
+}

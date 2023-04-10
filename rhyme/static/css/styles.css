@@ -20,11 +20,25 @@ body {
 
 /*overall css styling*/
 
+/*proportional size of the box containing background*/
+:root {
+    --vh: calc(100vh / 2 - (100vw*0.06));
+    --vw: calc(100vw / 2 - (100vw*0.06));
+    --linkcolor: maroon;
+    --darkcolor: #49616B;
+    --darklesscolor: #647376;
+    --yellowdark: #B99447;
+    --yellowbright: #647376;
+    --yellowpale: #E5C072;
+    --light: #F9FBE6;
+    --brownlight: #647376;
+}
+
 body {
     position: relative;
     background: url("../pics/background.jpeg");
     background-size: cover;
-    font-family: 'Futura', SansSerif;
+    font-family: 'Futura', SansSerif, serif;
     place-items: center;
 }
 

@@ -19,7 +19,7 @@ class Word(models.Model):
 
 
 class Rhymes(models.Model):
-    word = models.ForeignKey(Word, on_delete = models.CASCADE)
+    word = models.ForeignKey(Word, on_delete = models.CASCADE, related_name = 'rhymes')
     rhyme = models.CharField(max_length = 100)
     score = models.IntegerField()
     assonance = models.IntegerField()

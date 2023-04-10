@@ -11,42 +11,42 @@ div {
 
 /*no word in dict*/
 p {
-    color: #49616B;
+    color: var(--darkcolor);
 }
 
 /* choose variant with proper stress */
 fieldset {
-    color: #49616B;
+    color: var(--darkcolor);
     border-color: maroon;
     border-style: dotted;
 }
 
 /*variants*/
 form {
-    color: #49616B;
+    color: var(--darkcolor);
 }
 
 /*block for text input*/
 input[type='text'] {
-    color: #49616B;
+    color: var(--darkcolor);
     border-style: dotted;
     border-color: maroon;
-    background-color: #F9FBE6;
+    background-color: var(--light);
     padding: 5px;
 }
 
 input[type='text']:focus {
-    color: #49616B;
+    color: var(--darkcolor);
     border-style: dotted;
     border-color: maroon;
-    background-color: #F9FBE6;
+    background-color: var(--light);
     padding: 5px;
 }
 
 /*submit button*/
 .submit {
     color: maroon;
-    background-color: #F9FBE6;
+    background-color: var(--light);
     border-style: none;
     border-color: maroon;
     padding: 5px;
