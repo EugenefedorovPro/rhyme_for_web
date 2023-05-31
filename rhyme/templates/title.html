@@ -1,15 +1,9 @@
+{% extends 'base_rhyme.html' %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-<link rel="stylesheet" href="{% static 'css/title.css' %}">
+{% block import_css %}<link rel="stylesheet" href="{% static 'css/title.css' %}">{% endblock %}
+{% block title %}title{% endblock %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width" initial_scale="1.0">
-<title>rhyme russian</title>
-</head>
-<body>
+{% block body %}
 <div class="grid_container">
 
     <div class="grid_item" id="find_rhyme">
@@ -37,5 +31,4 @@
     </div>
 
 </div>
-</body>
-</html>
+{% endblock %}

@@ -1,20 +1,16 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-<link rel="stylesheet" href="{% static 'css/rhyme_results.css' %}">
+{% extends "base_rhyme.html" %}
 
-<!DOCTYPE html>
-<html lang='ru'>
-<head>
-    <meta charset='utf-8'>
-    <meta name="viewport" content="width=device-width" initial_scale="1.0">
-    <title>rhyme_results</title>
-</head>
-<body>
-    <h1>Таблица с рифмами</h1>
+{% load static %}
+{% block import_css %}<link rel="stylesheet" href="{% static 'css/rhyme_results.css' %}">{% endblock %}
+    {% block title %}rhyme_results {% endblock %}
+
+{% block body %}
+
+    <h3>Таблица с рифмами</h3>
     <p>Ударение в слове: <strong>{{ stressed_word }}</strong></p>
     <p>Количество рифм: <strong>{{ number_rhymes }}</strong></p>
     <p id="table_of_rhymes">{{ table_of_rhymes|safe }}</p>
-</body>
-</html>
+
+{% endblock %}
 
 

@@ -1,16 +1,10 @@
+{% extends 'base_rhyme.html' %}
+
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-<link rel="stylesheet" href="{% static 'css/rhyme.css' %}">
+{% block import_css %}<link rel="stylesheet" href="{% static 'css/rhyme.css' %}">{% endblock %}
+    {% block title %}rhyme russian{% endblock %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width" initial_scale="1.0">
-    <title>rhyme russian</title>
-</head>
-<body>
-
+{% block body %}
 <div id="input_word_to_rhyme">
     <fieldset id="fieldset_input_word">
         <legend><strong>Напиши слово для подбора рифм</strong></legend><br>
@@ -44,5 +38,4 @@
     {% endif %}
 </div>
 
-</body>
-</html>
+{% endblock %}

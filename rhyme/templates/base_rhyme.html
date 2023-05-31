@@ -1,0 +1,17 @@
+{% load static %}
+{% block import_css %}{% endblock %}
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{#<link rel="stylesheet" href="{% static 'css/title.css' %}">#}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" initial_scale="1.0">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>{% block body %}{% endblock %}</body>
+
+</html>
