@@ -1,13 +1,41 @@
-table {
-    /*border-collapse: collapse;*/
-    position: absolute;
-    left: 1vw;
-    width: 95vw;
-    border-collapse: collapse;
+body {
+   margin-top: 6vw;
+   margin-left: 5vw;
 }
 
-th, td {
-    border-style: dotted;
-    border-color: var(--light);
-    text-align: left;
+.card_parent {
+   display: none;
+   width: 70vw;
+   border-style: inset;
+   background-color: var(--light);
+}
+
+.head_texts {
+   color: var(--darkcolor);
+}
+
+h3 {
+   margin-top: 75px;
+}
+
+#score, #assonance, #pattern {
+   margin-left: 3vw;
+}
+
+
+#rhymed_word {
+   font-weight: bold;
+   padding-right: 2vw;
+}
+
+nav {
+   background-color: var(--yellowpale);
+}
+
+.navbar-brand {
+   margin-left: 3vw;
+}
+
+i {
+   margin: 0.5vh;
 }

@@ -1,16 +1,51 @@
 {% extends "base_rhyme.html" %}
-
 {% load static %}
+
+{% block title %}rhyme_results{% endblock %}
+
 {% block import_css %}<link rel="stylesheet" href="{% static 'css/rhyme_results.css' %}">{% endblock %}
-    {% block title %}rhyme_results {% endblock %}
 
-{% block body %}
 
-    <h3>Таблица с рифмами</h3>
-    <p>Ударение в слове: <strong>{{ stressed_word }}</strong></p>
-    <p>Количество рифм: <strong>{{ number_rhymes }}</strong></p>
-    <p id="table_of_rhymes">{{ table_of_rhymes|safe }}</p>
+{% block main %}
+
+    {% include "menu.html" %}
+
+    <h3 class="head_texts">Таблица с рифмами</h3>
+    <p class="head_texts">Исходной слово: <strong>{{ stressed_word }}</strong> <br>
+        Количество рифм: <strong>{{ number_rhymes }}</strong>
+
+    {% for card in cards %}
+        <div class="rhyme">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+            <i class="bi bi-list"></i>
+
+            <span class="head_texts" id="rhymed_word">{{ card|slice:'0:1'|first }}</span>
+
+
+            <br><div class='card_parent'>
+                    <div id="score"><span>Штраф - {{ card|slice:'1:2'|first }}</span></div>
+                    <div id="assonance"><span>Созвучность - {{ card|slice:'2:3'|first }}</span></div>
+                    <div id="pattern"><span>Паттерн<br>{{ card|slice:'3:4'|first }}</span></div>
+                </div>
+        </div>
+    {% endfor %}
+
+     <script>
+            var buttons = document.querySelectorAll('.bi')
+            buttons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var parent = this.parentNode;
+                    var card = parent.querySelector('.card_parent');
+                    if (card.style.display === 'none') {
+                        card.style.display = 'block';
+                    }
+                    else {
+                        card.style.display = 'none';}
+                })
+            })
+    </script>
 
 {% endblock %}
-
 
