@@ -1,0 +1,18 @@
+nav {
+    background-color: var(--yellowpale);
+}
+
+.navbar-brand, .nav-item {
+    color: var(--darkcolor);
+    /*margin-left: 3vw;*/
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+
+.custom-navbar-toggler {
+    background-color: var(--yellowpale);
+    border-style: none;
+}

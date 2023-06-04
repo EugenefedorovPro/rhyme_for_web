@@ -1,13 +1,13 @@
 /*rhyme*/
 
-div {
+.group {
     position: absolute;
-    top: 20vh;
+    top: 27vh;
     left: 15vw;
     right: 15vw;
-    /*border: red solid;*/
 
 }
+
 
 /*no word in dict*/
 p {
@@ -29,19 +29,13 @@ form {
 /*block for text input*/
 input[type='text'] {
     color: var(--darkcolor);
-    border-style: dotted;
+    border-style: solid;
     border-color: maroon;
     background-color: var(--light);
     padding: 5px;
+    margin-left: -5px;
 }
 
-input[type='text']:focus {
-    color: var(--darkcolor);
-    border-style: dotted;
-    border-color: maroon;
-    background-color: var(--light);
-    padding: 5px;
-}
 
 /*submit button*/
 .submit {
@@ -50,5 +44,20 @@ input[type='text']:focus {
     border-style: none;
     border-color: maroon;
     padding: 5px;
+    display: block;
 }
 
+.spinner-grow {
+    margin-top: 20px;
+    display: none;
+    color: var(--linkcolor);
+}
+
+
+
+/* Disable autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px var(--light) inset !important;
+}

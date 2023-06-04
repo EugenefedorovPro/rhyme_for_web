@@ -1,14 +1,17 @@
 {% extends 'base_rhyme.html' %}
 
 {% load static %}
-{% block import_css %}<link rel="stylesheet" href="{% static 'css/rhyme.css' %}"><link rel="stylesheet" href="{% static 'css/rhyme_results.css' %}">{% endblock %}
+{% block import_css %}
+    <link rel="stylesheet" href="{% static 'css/rhyme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock %}
 
     {% block title %}rhyme russian{% endblock %}
 
 {% block main %}
-   {% include 'menu.html' %}
+   {% include 'navbar.html' %}
 
-    <div id="input_word_to_rhyme">
+    <div class="group" id="input_word_to_rhyme">
         <fieldset id="fieldset_input_word">
             <legend><strong>Напиши слово для подбора рифм</strong></legend><br>
             <form action="{% url 'rhyme:rhyme_results' %}" method="post">
@@ -18,9 +21,15 @@
             <input class="submit" id="input_button_rhyme" type = "submit" value = "Отправить">
             </form>
         </fieldset><br>
+
+        <div id="spinner" class="spinner-grow" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+
     </div>
 
-    <div id="choose_stress">
+
+    <div class="group" id="choose_stress">
         {% if all_stresses %}
             <p><strong>В словаре нет слова "{{ unstressed_word }}"</strong></p>
             <fieldset>
@@ -40,5 +49,7 @@
             </fieldset>
         {% endif %}
     </div>
+
+<script src="{% static 'js/rhyme.js' %}"></script>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 body {
    margin-top: 6vw;
-   margin-left: 5vw;
+   margin-left: 3vw;
 }
 
 .card_parent {
@@ -28,14 +28,41 @@ h3 {
    padding-right: 2vw;
 }
 
-nav {
-   background-color: var(--yellowpale);
-}
-
-.navbar-brand {
-   margin-left: 3vw;
-}
 
 i {
    margin: 0.5vh;
+}
+
+/*scroll buttons*/
+
+/*#div_down {*/
+/*   margin-left: 30px;*/
+/*}*/
+.bi-arrow-up, .bi-arrow-down, .bi-arrow-down-up {
+   position: sticky;
+   left: 360px;
+}
+
+.bi-arrow-up {
+   bottom: 90%;
+}
+
+.bi-arrow-down-up {
+   bottom: 50%;
+}
+
+.bi-arrow-down  {
+   bottom: 10px;
+}
+
+
+@media all and (max-width: 500px) {
+   .bi-arrow-down, .bi-arrow-down, .bi-arrow-down-up {
+      left: 93vw;
+   }
+}
+
+/*select*/
+#select_penalty {
+   margin-top: 100px;
 }
