@@ -1,0 +1,24 @@
+<div id='row_2' class='row'>
+    <div id='column_2' class='col'>
+        {#    select#}
+        <select id="select_score" class="form-select" aria-label="Default select example">
+            <option selected value="all">Штраф</option>
+            {% for score in unique_scores %}
+                <option class="score_option" value='{{ score }}'>{{ score }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div id='column_3' class='col'>
+        {#    select#}
+        <select id="select_assonance" class="form-select" aria-label="Default select example">
+            <option selected value="all">Созвучие</option>
+            {% for assonance in unique_assonances %}
+                <option class="assonance_option" value='{{ assonance }}'>{{ assonance }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div id='column_3' class='col'>
+        <button id="select_button" type="button" class="btn">Найти</button>
+    </div>
+</div>
+

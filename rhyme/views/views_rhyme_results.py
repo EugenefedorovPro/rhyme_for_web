@@ -10,7 +10,9 @@ def rhyme_results(request):
       # new_word = populate_db(unstressed_word, all_stresses, stressed_word, table_of_rhymes)
       rhymes = tuple(table_of_rhymes['rhyme'])
       scores = tuple(table_of_rhymes['score'])
+      unique_scores = tuple(set(scores))
       assonances = tuple(table_of_rhymes['assonance'])
+      unique_assonances = tuple(set(assonances))
       patterns = tuple(table_of_rhymes['pattern'])
       number_rhymes = len(table_of_rhymes)
       cards = []
@@ -21,6 +23,8 @@ def rhyme_results(request):
          'number_rhymes': number_rhymes,
          'stressed_word': stressed_word,
          'cards': cards,
+         'unique_scores': unique_scores,
+         'unique_assonances': unique_assonances,
          }
       return render(request, "rhyme_results.html", context)
    except:

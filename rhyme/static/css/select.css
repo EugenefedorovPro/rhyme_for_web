@@ -1,0 +1,20 @@
+/*select blocks*/
+.form-select, #select_button {
+    color: var(--brownlight);
+    background-color: var(--light);
+    border-radius: 0;
+    font-size: 1rem;
+    border: 1px groove;
+}
+
+#select_button {
+    /*border-style: solid;*/
+    /*color: red;*/
+    /*background-color: #49616B;*/
+    width: 100%;
+}
+
+.score_option, .assonance_option {
+    font-size: 1rem;
+}
+

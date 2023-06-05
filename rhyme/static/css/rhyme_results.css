@@ -1,6 +1,33 @@
-body {
-   margin-top: 6vw;
-   margin-left: 3vw;
+/*grid*/
+#container {
+   width: 100vw;
+   height: 100vh;
+   /*border-style: double;*/
+   /*color: red;*/
+}
+
+#row_1, #row_2, #row_3 {
+   --bs-gutter-x: none;
+   /*border-style: solid;*/
+   /*color: green;*/
+}
+
+
+/*#column_2, #column_3, #column_4, #column_5, #column_6  {*/
+/*   border-style: dotted;*/
+/*   background-color: yellow;*/
+/*}*/
+
+#row_3 {
+   padding-top: 10px;
+   padding-left: 10px;
+   min-height: 80vh;
+}
+
+/*elements within grid system*/
+
+.head_texts {
+   color: var(--darkcolor);
 }
 
 .card_parent {
@@ -10,18 +37,9 @@ body {
    background-color: var(--light);
 }
 
-.head_texts {
-   color: var(--darkcolor);
-}
-
-h3 {
-   margin-top: 75px;
-}
-
-#score, #assonance, #pattern {
+.score, .assonance, .pattern {
    margin-left: 3vw;
 }
-
 
 #rhymed_word {
    font-weight: bold;
@@ -33,18 +51,18 @@ i {
    margin: 0.5vh;
 }
 
+
+
+/*elements beyond grid system*/
 /*scroll buttons*/
 
-/*#div_down {*/
-/*   margin-left: 30px;*/
-/*}*/
 .bi-arrow-up, .bi-arrow-down, .bi-arrow-down-up {
    position: sticky;
-   left: 360px;
+   left: 450px;
 }
 
 .bi-arrow-up {
-   bottom: 90%;
+   bottom: 80%;
 }
 
 .bi-arrow-down-up {
@@ -52,17 +70,14 @@ i {
 }
 
 .bi-arrow-down  {
-   bottom: 10px;
+   bottom: 20%;
 }
 
 
 @media all and (max-width: 500px) {
-   .bi-arrow-down, .bi-arrow-down, .bi-arrow-down-up {
+   .bi-arrow-up, .bi-arrow-down, .bi-arrow-down-up {
       left: 93vw;
    }
 }
 
-/*select*/
-#select_penalty {
-   margin-top: 100px;
-}
+
