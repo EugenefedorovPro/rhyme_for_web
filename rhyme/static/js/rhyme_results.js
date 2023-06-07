@@ -42,7 +42,7 @@ buttons.forEach(function(button) {
 class Select {
     constructor() {
         this.marker_of_being_selected = 'being_selected';
-        this.button = document.getElementById('select_button');
+        this.select_button = document.getElementById('select_button');
         this.selectScore = document.getElementById('select_score');
         this.allScores = document.querySelectorAll('.score');
         this.score_select_options = this.selectScore.querySelectorAll('option')
@@ -50,6 +50,43 @@ class Select {
         this.assonance_select_options = this.selectAssonance.querySelectorAll('option')
         this.allAssonances = document.querySelectorAll('.assonance');
         this.allCardParents = document.querySelectorAll('.card_parent');
+        this.reset_button = document.getElementById('reset_button');
+        this.rhymes = document.querySelectorAll('.rhyme')
+    }
+
+    set_option_default(selectSelector, default_value) {
+       for (let i=0; i < selectSelector.options.length; i++) {
+          let option = selectSelector.options[i];
+          if (option.text === default_value) {
+              option.selected = true;
+              break;
+          }
+       }
+    }
+    reset() {
+        this.reset_button.addEventListener('click', () => {
+
+            this.setScores();
+            this.setAssonances();
+
+            this.rhymes.forEach((rhyme) => {
+                rhyme.style.display = 'block';
+            })
+
+            this.score_select_options.forEach((option) => {
+                option.removeAttribute('disabled', 'false');
+                option.removeAttribute('hidden', 'false');
+            })
+
+            this.assonance_select_options.forEach((option) => {
+                option.removeAttribute('disabled', 'false');
+                option.removeAttribute('hidden', 'false');
+            })
+
+            this.set_option_default(this.selectScore, 'Штраф')
+            this.set_option_default(this.selectAssonance, 'Созвучие')
+
+        } )
     }
 
     getValuesAssonanceSelectFrom(block_remove) {
@@ -143,6 +180,7 @@ class Select {
 
 
     select() {
+        // if a value in one select is selected, irrelevant values from another select disappear
         this.change(
             this.selectScore,
             this.selectAssonance,
@@ -159,7 +197,11 @@ class Select {
             '.score',
         )
 
-        this.button.addEventListener('click', () => { // process score
+        this.reset()
+
+        // execute selection
+        this.select_button.addEventListener('click', () => { // process score
+            // add marker 'being_selected'
             this.setScores();
             this.setAssonances();
 

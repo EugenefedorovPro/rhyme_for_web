@@ -1,5 +1,5 @@
 /*select blocks*/
-.form-select, #select_button {
+.form-select, #select_button, #reset_button {
     color: var(--brownlight);
     background-color: var(--light);
     border-radius: 0;
@@ -7,7 +7,7 @@
     border: 1px groove;
 }
 
-#select_button {
+#select_button, #reset_button {
     /*border-style: solid;*/
     /*color: red;*/
     /*background-color: #49616B;*/
