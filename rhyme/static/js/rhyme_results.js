@@ -38,75 +38,149 @@ buttons.forEach(function(button) {
     })
 })
 
+// -------------
+class Select {
+    constructor() {
+        this.marker_of_being_selected = 'being_selected';
+        this.button = document.getElementById('select_button');
+        this.selectScore = document.getElementById('select_score');
+        this.allScores = document.querySelectorAll('.score');
+        this.score_select_options = this.selectScore.querySelectorAll('option')
+        this.selectAssonance = document.getElementById('select_assonance');
+        this.assonance_select_options = this.selectAssonance.querySelectorAll('option')
+        this.allAssonances = document.querySelectorAll('.assonance');
+        this.allCardParents = document.querySelectorAll('.card_parent');
+    }
 
-// select score
-var button = document.getElementById('select_button')
+    getValuesAssonanceSelectFrom(block_remove) {
+        let values_assonance_select_from = new Set();
+        let elms_assonance_select_from = block_remove.querySelectorAll('option');
+        elms_assonance_select_from.forEach((elm) => {
+            values_assonance_select_from.add(elm.value)
+        })
+        return values_assonance_select_from
+    }
 
-var selectScore = document.getElementById('select_score');
-var allScores = document.querySelectorAll('.score');
+    getDiffElmSets(set_1, set_2) {
+        let dif_elms = []
+        set_1.forEach((elm) => {
+            if (!set_2.has(elm)) {
+                dif_elms.push(elm)
+            }
+        })
+        return dif_elms
+    }
 
-var marker_score_class = 'selected_by_score'
-var marker_assonance_class = 'selected_by_assonance'
-function setScores() {
-    allScores.forEach(function (score) {
-        let parent = score.parentNode;
-        parent = parent.parentNode;
-        parent.classList.add(marker_score_class)
-    })
+    change(selectChoose, selectRemove, select_remove_options, class_choose, class_remove) {
+        selectChoose.addEventListener('change', () => {
+            select_remove_options.forEach((option) => {
+                option.removeAttribute('disabled', 'false');
+                option.removeAttribute('hidden', 'false');
+            })
+            let selected_score_value = selectChoose.value;
+            let assonance_values_to_retain = new Set();
+
+            this.allCardParents.forEach((card_parent) => {
+                let current_score_elm = card_parent.querySelector(class_choose);
+                let current_score_value = current_score_elm.classList.item(1);
+                let current_assonance_elm = card_parent.querySelector(class_remove);
+                let current_assonance_value = current_assonance_elm.classList.item(1);
+
+                if (selected_score_value === 'all') {
+                    assonance_values_to_retain.add(current_assonance_value);
+                    assonance_values_to_retain.add('all');
+                }
+                else if (selected_score_value === current_score_value) {
+                    assonance_values_to_retain.add(current_assonance_value);
+                }
+            })
+            let values_assonance_select_from = this.getValuesAssonanceSelectFrom(selectRemove);
+            let values_remove_from_assonance = this.getDiffElmSets(values_assonance_select_from, assonance_values_to_retain);
+
+            select_remove_options.forEach((option) => {
+                if (values_remove_from_assonance.includes(option.value) === true) {
+                    option.setAttribute('disabled', 'true');
+                    option.setAttribute('hidden', 'true');
+                }
+            })
+        })
+    }
+
+    setAssonances() {
+        this.allAssonances.forEach((assonance) => {
+            let parent = assonance.parentNode;
+            parent = parent.parentNode;
+            parent.classList.add(this.marker_of_being_selected)
+        })
+    }
+    setScores() {
+        this.allScores.forEach((score) => {
+            let parent = score.parentNode;
+            parent = parent.parentNode;
+            parent.classList.add(this.marker_of_being_selected)
+        })
+    }
+
+    assign_selections(selector, all_children_selector, marker_class) {
+        let  selected_value_score = selector.value;
+        all_children_selector.forEach(function(child) {
+            let current_value = child.classList;
+            current_value = current_value.item(1)
+            let parent = child.parentNode;
+            parent = parent.parentNode;
+            if (parent.classList.contains(marker_class) === true) {
+                if (selected_value_score === 'all') {
+                    parent.style.display = 'block';
+                } else if (current_value !== selected_value_score) {
+                    parent.style.display = 'none';
+                    parent.classList.remove(marker_class)
+                } else {
+                    parent.style.display = 'block';
+                }
+            }
+        })
+    }
+
+
+    select() {
+        this.change(
+            this.selectScore,
+            this.selectAssonance,
+            this.assonance_select_options,
+            '.score',
+            '.assonance',
+        )
+
+        this.change(
+            this.selectAssonance,
+            this.selectScore,
+            this.score_select_options,
+            '.assonance',
+            '.score',
+        )
+
+        this.button.addEventListener('click', () => { // process score
+            this.setScores();
+            this.setAssonances();
+
+            this.assign_selections(
+                this.selectScore,
+                this.allScores,
+                this.marker_of_being_selected,
+            )
+
+            this.assign_selections(
+                this.selectAssonance,
+                this.allAssonances,
+                this.marker_of_being_selected,
+            )
+
+        })
+    }
 }
 
-// select assonance
-var selectAssonance = document.getElementById('select_assonance');
-var allAssonances = document.querySelectorAll('.assonance');
-function setAssonances() {
-    allAssonances.forEach(function(assonance) {
-        let parent = assonance.parentNode;
-        parent = parent.parentNode;
-        parent.classList.add(marker_assonance_class)
-    })
-}
 
-button.addEventListener('click', function() { // process score
-    setScores()
-    setAssonances()
+// change(selectChoose, selectRemove, select_remove_options, class_choose, class_remove) {
 
-// process score
-    let  selected_value_score = selectScore.value;
-    allScores.forEach(function(score) {
-        let current_value = score.classList;
-        current_value = current_value.item(1)
-        let parent = score.parentNode;
-        parent = parent.parentNode;
-
-        if (parent.classList.contains(marker_assonance_class) === true) {
-            if (selected_value_score === 'all') {
-                parent.style.display = 'block';
-            } else if (current_value !== selected_value_score) {
-                parent.style.display = 'none';
-                parent.classList.remove(marker_score_class)
-            } else {
-                parent.style.display = 'block';
-            }
-        }
-    })
-// process assonance
-    let  selected_value_assonance = selectAssonance.value;
-    allAssonances.forEach(function(assonance) {
-        let current_value = assonance.classList;
-        current_value = current_value.item(1)
-        let parent = assonance.parentNode;
-        parent = parent.parentNode;
-
-        if (parent.classList.contains(marker_score_class) === true) {
-            if (selected_value_assonance === 'all') {
-                parent.style.display = 'block';
-            } else if (current_value !== selected_value_assonance) {
-                parent.style.display = 'none';
-                parent.classList.remove(marker_assonance_class)
-            } else {
-                parent.style.display = 'block';
-            }
-        }
-    })
-})
-
+const select = new Select()
+select.select()
