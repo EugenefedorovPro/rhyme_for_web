@@ -1,13 +1,14 @@
+import pandas as pd
 from rhyme_rus.rhyme import rhyme_with_stresses
 from django.shortcuts import render
-from rhyme.utils.populate_db import populate_db
+import json
+from rhyme.utils.rhyme_results.data_score_assonance import DataScoreAssonance
 
 
 def rhyme_results(request):
    unstressed_word = request.POST["target_word"]
    try:
       table_of_rhymes, all_stresses, stressed_word = rhyme_with_stresses(unstressed_word)
-      # new_word = populate_db(unstressed_word, all_stresses, stressed_word, table_of_rhymes)
       rhymes = tuple(table_of_rhymes['rhyme'])
       scores = tuple(table_of_rhymes['score'])
       unique_scores = tuple(set(scores))
@@ -15,6 +16,14 @@ def rhyme_results(request):
       unique_assonances = tuple(set(assonances))
       patterns = tuple(table_of_rhymes['pattern'])
       number_rhymes = len(table_of_rhymes)
+
+      Data = DataScoreAssonance(table_of_rhymes, scores, assonances)
+      data_scores_by_assonance = Data.data_scores_by_assonance
+      data_assonances_by_score = Data.data_assonances_by_score
+      all_score_values = Data.all_score_values
+      all_assonance_values = Data.all_assonance_values
+
+
       cards = []
       for rhyme, score, assonance, pattern in zip(rhymes, scores, assonances, patterns):
          cards.append(tuple((rhyme, score, assonance, pattern)))
@@ -25,6 +34,10 @@ def rhyme_results(request):
          'cards': cards,
          'unique_scores': unique_scores,
          'unique_assonances': unique_assonances,
+         'data_assonances_by_score': data_assonances_by_score,
+         'data_scores_by_assonance': data_scores_by_assonance,
+         'all_score_values': all_score_values,
+         'all_assonance_values': all_assonance_values
          }
       return render(request, "rhyme_results.html", context)
    except:
@@ -33,12 +46,3 @@ def rhyme_results(request):
       return render(request, 'rhyme.html', context)
 
 
-# number_rhymes = len(table_of_rhymes)
-# new_word = populate_db(unstressed_word, all_stresses, stressed_word, table_of_rhymes)
-#
-# table_of_rhymes.reset_index(inplace = True)
-# new_names = {'index': 'id', 'rhyme': 'Рифма', 'score': 'Штраф', 'assonance': 'Сонанс', 'pattern': 'Паттерн'}
-# table_of_rhymes.rename(columns = new_names, inplace = True)
-# table_of_rhymes = table_of_rhymes.to_html(index = False)
-#
-# context = {"table_of_rhymes": table_of_rhymes, "stressed_word": stressed_word, "number_rhymes": number_rhymes}

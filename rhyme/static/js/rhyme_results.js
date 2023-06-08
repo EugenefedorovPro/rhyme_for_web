@@ -38,191 +38,165 @@ buttons.forEach(function(button) {
     })
 })
 
-// -------------
+
+// select
+let number = 4;
+console.log(data_assonances_by_score[number])
+console.log(data_scores_by_assonance)
+
 class Select {
-    constructor() {
-        this.marker_of_being_selected = 'being_selected';
-        this.select_button = document.getElementById('select_button');
+    constructor(data_assonances_by_score, data_scores_by_assonance, all_score_values, all_assonance_values) {
+        this.data_assonances_by_score = data_assonances_by_score;
+        this.data_scores_by_assonance = data_scores_by_assonance;
         this.selectScore = document.getElementById('select_score');
-        this.allScores = document.querySelectorAll('.score');
-        this.score_select_options = this.selectScore.querySelectorAll('option')
+        this.selectScoreVariants = this.selectScore.querySelectorAll('option');
+        this.allScoreValues = all_score_values;
         this.selectAssonance = document.getElementById('select_assonance');
-        this.assonance_select_options = this.selectAssonance.querySelectorAll('option')
-        this.allAssonances = document.querySelectorAll('.assonance');
-        this.allCardParents = document.querySelectorAll('.card_parent');
-        this.reset_button = document.getElementById('reset_button');
-        this.rhymes = document.querySelectorAll('.rhyme')
+        this.selectAssonanceVariants = this.selectAssonance.querySelectorAll('option');
+        this.allAssonanceValues = all_assonance_values;
+        this.rhymes = document.querySelectorAll('.rhyme');
+
     }
 
-    set_option_default(selectSelector, default_value) {
-       for (let i=0; i < selectSelector.options.length; i++) {
-          let option = selectSelector.options[i];
-          if (option.text === default_value) {
-              option.selected = true;
-              break;
-          }
-       }
-    }
-    reset() {
-        this.reset_button.addEventListener('click', () => {
+    select_score() {
 
-            this.setScores();
-            this.setAssonances();
+        this.selectScore.addEventListener('change', () => {
+            let selected_assonance_value = this.selectAssonance.value
 
-            this.rhymes.forEach((rhyme) => {
-                rhyme.style.display = 'block';
-            })
+            // reset rhymes
+            // this.rhymes.forEach((rhyme) => {
+            //     let rhyme_assonance_value = rhyme.getAttribute('data-assonance')
+            //     if (selected_assonance_value === 'all') {
+            //         rhyme.style.display = 'block';
+            //     }
+            //     else if (rhyme_assonance_value !== selected_assonance_value) {
+            //         rhyme.style.display = 'block';
+            //     }
+            // })
 
-            this.score_select_options.forEach((option) => {
-                option.removeAttribute('disabled', 'false');
-                option.removeAttribute('hidden', 'false');
-            })
+            // reset assonance select options
+            // this.selectAssonanceVariants.forEach((variant) => {
+            //     variant.style.display = 'block';
+            // })
 
-            this.assonance_select_options.forEach((option) => {
-                option.removeAttribute('disabled', 'false');
-                option.removeAttribute('hidden', 'false');
-            })
+            // get selected score value
+            let selected_score_value = this.selectScore.value;
 
-            this.set_option_default(this.selectScore, 'Штраф')
-            this.set_option_default(this.selectAssonance, 'Созвучие')
 
-        } )
-    }
-
-    getValuesAssonanceSelectFrom(block_remove) {
-        let values_assonance_select_from = new Set();
-        let elms_assonance_select_from = block_remove.querySelectorAll('option');
-        elms_assonance_select_from.forEach((elm) => {
-            values_assonance_select_from.add(elm.value)
-        })
-        return values_assonance_select_from
-    }
-
-    getDiffElmSets(set_1, set_2) {
-        let dif_elms = []
-        set_1.forEach((elm) => {
-            if (!set_2.has(elm)) {
-                dif_elms.push(elm)
-            }
-        })
-        return dif_elms
-    }
-
-    change(selectChoose, selectRemove, select_remove_options, class_choose, class_remove) {
-        selectChoose.addEventListener('change', () => {
-            select_remove_options.forEach((option) => {
-                option.removeAttribute('disabled', 'false');
-                option.removeAttribute('hidden', 'false');
-            })
-            let selected_score_value = selectChoose.value;
-            let assonance_values_to_retain = new Set();
-
-            this.allCardParents.forEach((card_parent) => {
-                let current_score_elm = card_parent.querySelector(class_choose);
-                let current_score_value = current_score_elm.classList.item(1);
-                let current_assonance_elm = card_parent.querySelector(class_remove);
-                let current_assonance_value = current_assonance_elm.classList.item(1);
-
+            // hide unselected score select options
+            this.selectScoreVariants.forEach((variant) => {
+                let score_variant_value = variant.value
                 if (selected_score_value === 'all') {
-                    assonance_values_to_retain.add(current_assonance_value);
-                    assonance_values_to_retain.add('all');
+                    variant.style.display = 'block'
+                    this.rhymes.forEach((rhyme) => {
+                        rhyme.style.display = 'block';
+                    })
+                    this.selectAssonanceVariants.forEach((variant) => {
+                        variant.style.display = 'block';
+                    })
+                    this.selectAssonance.value = 'all';
                 }
-                else if (selected_score_value === current_score_value) {
-                    assonance_values_to_retain.add(current_assonance_value);
-                }
-            })
-            let values_assonance_select_from = this.getValuesAssonanceSelectFrom(selectRemove);
-            let values_remove_from_assonance = this.getDiffElmSets(values_assonance_select_from, assonance_values_to_retain);
-
-            select_remove_options.forEach((option) => {
-                if (values_remove_from_assonance.includes(option.value) === true) {
-                    option.setAttribute('disabled', 'true');
-                    option.setAttribute('hidden', 'true');
+                else if (score_variant_value !== selected_score_value && score_variant_value !== 'all') {
+                    variant.style.display = 'none'
                 }
             })
-        })
-    }
 
-    setAssonances() {
-        this.allAssonances.forEach((assonance) => {
-            let parent = assonance.parentNode;
-            parent = parent.parentNode;
-            parent.classList.add(this.marker_of_being_selected)
-        })
-    }
-    setScores() {
-        this.allScores.forEach((score) => {
-            let parent = score.parentNode;
-            parent = parent.parentNode;
-            parent.classList.add(this.marker_of_being_selected)
-        })
-    }
-
-    assign_selections(selector, all_children_selector, marker_class) {
-        let  selected_value_score = selector.value;
-        all_children_selector.forEach(function(child) {
-            let current_value = child.classList;
-            current_value = current_value.item(1)
-            let parent = child.parentNode;
-            parent = parent.parentNode;
-            if (parent.classList.contains(marker_class) === true) {
-                if (selected_value_score === 'all') {
-                    parent.style.display = 'block';
-                } else if (current_value !== selected_value_score) {
-                    parent.style.display = 'none';
-                    parent.classList.remove(marker_class)
-                } else {
-                    parent.style.display = 'block';
+            // hide all rhymes, but selected by score selector
+            this.rhymes.forEach((rhyme) => {
+                let rhyme_score_value = rhyme.getAttribute('data-score');
+                let rhyme_assonance_value = rhyme.getAttribute('assonance-score');
+                if (selected_score_value === 'all' && selected_assonance_value !== rhyme_assonance_value) {
+                    rhyme.style.display = 'block';
                 }
-            }
+                else if (rhyme_score_value !== selected_score_value && rhyme_score_value !== selected_score_value) {
+                    rhyme.style.display = 'none';
+                }
+            })
+
+            // hide select assonance values with no rhyme
+            let assonance_values_to_hide = this.data_assonances_by_score[parseInt(selected_score_value)]
+            this.selectAssonanceVariants.forEach((variant) => {
+                let variant_value = parseInt(variant.value);
+                if (selected_score_value === 'all') {
+                    variant.style.display = 'block';
+                }
+                else if (assonance_values_to_hide.includes(variant_value) === true) {
+                    variant.style.display = 'none';
+                }
+            })
+
         })
     }
 
 
-    select() {
-        // if a value in one select is selected, irrelevant values from another select disappear
-        this.change(
-            this.selectScore,
-            this.selectAssonance,
-            this.assonance_select_options,
-            '.score',
-            '.assonance',
-        )
+    select_assonance() {
 
-        this.change(
-            this.selectAssonance,
-            this.selectScore,
-            this.score_select_options,
-            '.assonance',
-            '.score',
-        )
+        this.selectAssonance.addEventListener('change', () => {
+            // get selected_score_value
+            let selected_score_value = this.selectScore.value
 
-        this.reset()
+            // reset all assonances, but those hidden by score select
+            // this.rhymes.forEach((rhyme) => {
+            //     let rhyme_score_value = rhyme.getAttribute('data-score');
+            //     if (selected_score_value === 'all') {
+            //         rhyme.style.display = 'block';
+            //     }
+            //     else if (rhyme_score_value !== selected_score_value) {
+            //         rhyme.style.display = 'block';
+            //     }
+            // })
 
-        // execute selection
-        this.select_button.addEventListener('click', () => { // process score
-            // add marker 'being_selected'
-            this.setScores();
-            this.setAssonances();
+            let selected_assonance_value = this.selectAssonance.value;
 
-            this.assign_selections(
-                this.selectScore,
-                this.allScores,
-                this.marker_of_being_selected,
-            )
+            // hide unselected assonance select options
+            this.selectAssonanceVariants.forEach((variant) => {
+                let assonance_variant_value = variant.value
+                if (selected_assonance_value === 'all') {
+                    variant.style.display = 'block';
+                    this.rhymes.forEach((rhyme) => {
+                        rhyme.style.display = 'block';
+                    })
+                    this.selectScoreVariants.forEach((variant) => {
+                        variant.style.display = 'block';
+                    })
+                    this.selectScore.value = 'all';
+                }
+                else if (assonance_variant_value !== selected_assonance_value && assonance_variant_value !== 'all') {
+                    variant.style.display = 'none'
+                }
+            })
 
-            this.assign_selections(
-                this.selectAssonance,
-                this.allAssonances,
-                this.marker_of_being_selected,
-            )
+            // hide all rhymes, which do not comply with assonance select
+            this.rhymes.forEach((rhyme) => {
+                let rhyme_assonance_value = rhyme.getAttribute('data-assonance');
+                let rhyme_score_value = rhyme.getAttribute('data-assonance');
+                if (selected_assonance_value === 'all' && rhyme_score_value !== selected_score_value) {
+                        rhyme.style.display = 'block';
+                } else if (selected_assonance_value !== rhyme_assonance_value && rhyme_score_value !== selected_score_value) {
+                    rhyme.style.display = 'none';
+                }
+            })
+
+            // hide all score options/variants from select group
+            let score_values_to_hide = this.data_scores_by_assonance[parseInt(selected_assonance_value)];
+            this.selectScoreVariants.forEach((variant) => {
+                let variant_value = parseInt(variant.value);
+                if (selected_assonance_value === 'all') {
+                    variant.style.display = 'block';
+                } else if (score_values_to_hide.includes(variant_value)) {
+                    variant.style.display = 'none';
+                }
+            })
 
         })
     }
 }
 
-
-// change(selectChoose, selectRemove, select_remove_options, class_choose, class_remove) {
-
-const select = new Select()
-select.select()
+let select = new Select(
+    data_assonances_by_score,
+    data_scores_by_assonance,
+    all_score_values,
+    all_assonance_values
+)
+select.select_score()
+select.select_assonance()

@@ -24,28 +24,35 @@
                 Количество рифм: <strong>{{ number_rhymes }}</strong>
 
                 {% for card in cards %}
-                    <div class="rhyme">
+                    <div class="rhyme" data-score="{{ card|slice:'1:2'|first }}" data-assonance="{{ card|slice:'2:3'|first }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                         </svg>
                         <i class="bi bi-list"></i>
 
-                        <span class="head_texts" id="rhymed_word">{{ card|slice:'0:1'|first }}</span>
+                        <span class="head_texts rhymed_word" >{{ card|slice:'0:1'|first }}</span>
 
                         <br>
                         <div class='card_parent'>
-                            <div class="score {{  card|slice:'1:2'|first  }}"><span>Штраф - {{ card|slice:'1:2'|first }}</span></div>
-                            <div class="assonance {{  card|slice:'2:3'|first  }}"><span>Созвучность - {{ card|slice:'2:3'|first }}</span></div>
-                            <div class="pattern"><span>Паттерн<br>{{ card|slice:'3:4'|first }}</span></div>
+                            <div><span>Штраф - {{ card|slice:'1:2'|first }}</span></div>
+                            <div><span>Созвучность - {{ card|slice:'2:3'|first }}</span></div>
+                            <div><span>Паттерн<br>{{ card|slice:'3:4'|first }}</span></div>
                         </div>
                     </div>
                 {% endfor %}
         </div>
     </div>
+    {#    beyond grid system#}
+    {% include "scroll.html" %}
+
+    <script>
+        let data_assonances_by_score = JSON.parse('{{ data_assonances_by_score|safe }}');
+        let data_scores_by_assonance = JSON.parse('{{ data_scores_by_assonance|safe }}');
+        let all_score_values = JSON.parse('{{ all_score_values|safe }}')
+        let all_assonance_values = JSON.parse('{{ all_assonance_values|safe }}')
+    </script>
+    <script src="{% static 'js/rhyme_results.js' %}"></script>
+
 </div>
 
-{#    beyond grid system#}
-{% include "scroll.html" %}
-
-<script src="{% static 'js/rhyme_results.js' %}"></script>
 {% endblock %}
