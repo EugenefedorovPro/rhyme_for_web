@@ -1,23 +1,71 @@
+// line all element on the screen
+
+class arrangeElements {
+    constructor() {
+        this.sandwich_icon  = document.getElementById('sandwich_icon');
+        this.rect = 0;
+        this.get_sandwich_position();
+        this.top = 0;
+        this.right = 0;
+
+        this.arrow_up = document.getElementById('up')
+    }
+    get_sandwich_position() {
+        this.rect = this.sandwich_icon.getBoundingClientRect();
+        this.top = this.rect.top;
+        this.right = this.rect.right;
+    }
+
+    arrange_elements() {
+        this.arrow_up.style.marginTop = this.top;
+        this.arrow_up.style.marginRight = this.right;
+    }
+}
+
+let arrange_elements = new arrangeElements()
+rect = arrange_elements.rect
+console.log('rect', rect)
+arrange_elements.arrange_elements()
+
+
+
+// spinner
+
+let submit = document.getElementById("input_button_rhyme");
+let icon = document.getElementById('icon_to_rhyme');
+let spinner = document.getElementById('spinner');
+let icon_parent = icon.parentNode;
+console.log('icon_parent', icon_parent)
+submit.addEventListener('click', function() {
+        spinner.style.display = 'inline-flex';
+        icon_parent.replaceChild(spinner, icon)
+        window.onload = function () {
+            icon_parent.replaceChild(icon, spinner)
+        }
+    }
+)
+
+
 // arrows
 
-var arrow = document.querySelectorAll(".bi-arrow-down")[0];
-arrow.addEventListener('click', function() {
+let arrow_down = document.querySelectorAll(".bi-arrow-down")[0];
+arrow_down.addEventListener('click', function() {
     window.scrollTo({
         top: document.documentElement.scrollHeight,
         behavior: "smooth"
     });
 });
 
-var arrow = document.querySelectorAll(".bi-arrow-down-up")[0];
-arrow.addEventListener('click', function() {
+let arrow_down_up = document.querySelectorAll(".bi-arrow-down-up")[0];
+arrow_down_up.addEventListener('click', function() {
     window.scrollTo({
         top: document.documentElement.scrollHeight/2,
         behavior: "smooth"
     });
 });
 
-var arrow = document.querySelectorAll(".bi-arrow-up")[0];
-arrow.addEventListener('click', function() {
+let arrow_up = document.querySelectorAll(".bi-arrow-up")[0];
+arrow_up.addEventListener('click', function() {
     window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -25,11 +73,11 @@ arrow.addEventListener('click', function() {
 });
 
 // {#    open a word's card#}
-var buttons = document.querySelectorAll('.bi-list')
+let buttons = document.querySelectorAll('.bi-list')
 buttons.forEach(function(button) {
     button.addEventListener('click', function() {
-        var parent = this.parentNode;
-        var card = parent.querySelector('.card_parent');
+        let parent = this.parentNode;
+        let card = parent.querySelector('.card_parent');
         if (card.style.display === 'none') {
             card.style.display = 'block';
         }
@@ -45,15 +93,13 @@ console.log(data_assonances_by_score[number])
 console.log(data_scores_by_assonance)
 
 class Select {
-    constructor(data_assonances_by_score, data_scores_by_assonance, all_score_values, all_assonance_values) {
+    constructor(data_assonances_by_score, data_scores_by_assonance) {
         this.data_assonances_by_score = data_assonances_by_score;
         this.data_scores_by_assonance = data_scores_by_assonance;
         this.selectScore = document.getElementById('select_score');
         this.selectScoreVariants = this.selectScore.querySelectorAll('option');
-        this.allScoreValues = all_score_values;
         this.selectAssonance = document.getElementById('select_assonance');
         this.selectAssonanceVariants = this.selectAssonance.querySelectorAll('option');
-        this.allAssonanceValues = all_assonance_values;
         this.rhymes = document.querySelectorAll('.rhyme');
 
     }
@@ -195,8 +241,6 @@ class Select {
 let select = new Select(
     data_assonances_by_score,
     data_scores_by_assonance,
-    all_score_values,
-    all_assonance_values
 )
 select.select_score()
 select.select_assonance()

@@ -14,11 +14,12 @@
     <div class="group" id="input_word_to_rhyme">
         <fieldset id="fieldset_input_word">
             <legend><strong>Напиши слово для подбора рифм</strong></legend><br>
-            <form action="{% url 'rhyme:rhyme_results' %}" method="post">
+            <form id="form_on_rhyme_results" action="{% url 'rhyme:rhyme_results' %}" method="post">
                 {% csrf_token %}
-                <label for="to_rhyme"></label>
                 <input type="text" id="to_rhyme" name="target_word"><br><br>
-            <input class="submit" id="input_button_rhyme" type = "submit" value = "Отправить">
+                <button class="submit" id="input_button_rhyme" type = "submit">
+                Подобрать
+                </button>
             </form>
         </fieldset><br>
 

@@ -1,21 +1,48 @@
 <div id='row_2' class='row'>
-    <div id='column_2' class='col'>
-        {#    select#}
-        <select id="select_score" class="form-select" aria-label="Default select example">
-            <option selected value="all">Штраф</option>
-            {% for score in unique_scores %}
-                <option class="score_option" value='{{ score }}'>{{ score }}</option>
-            {% endfor %}
-        </select>
+    <div id='column_2' class='col-3'>
+        <button id='button_filter' class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <span id="filter">Фильтр</span>
+        </button>
     </div>
     <div id='column_3' class='col'>
-        {#    select#}
-        <select id="select_assonance" class="form-select" aria-label="Default select example">
-            <option selected value="all">Созвучие</option>
-            {% for assonance in unique_assonances %}
-                <option class="assonance_option" value='{{ assonance }}'>{{ assonance }}</option>
-            {% endfor %}
-        </select>
+        <form id="form_on_rhyme_results" action="{% url 'rhyme:rhyme_results' %}" method="post">
+            {% csrf_token %}
+            <input type="text" id="to_rhyme" name="target_word" placeholder="Введите слово">
+            <button class="submit" id="input_button_rhyme" type = "submit">
+                <span id="icon_to_rhyme">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right" viewBox="0 0 16 16">
+                        <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
+                    </svg>
+                    <i class="bi bi-caret-right"></i>
+                </span>
+            </button>
+        </form>
+        <div id="spinner" class="spinner-grow" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
     </div>
 </div>
 
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+      {#    select#}
+      <select id="select_score" class="form-select" aria-label="Default select example">
+          <option selected value="all">Штраф</option>
+          {% for score in unique_scores %}
+              <option class="score_option" value='{{ score }}'>{{ score }}</option>
+          {% endfor %}
+      </select>
+      {#    select#}
+      <select id="select_assonance" class="form-select" aria-label="Default select example">
+          <option selected value="all">Созвучие</option>
+          {% for assonance in unique_assonances %}
+              <option class="assonance_option" value='{{ assonance }}'>{{ assonance }}</option>
+          {% endfor %}
+      </select>
+  </div>
+</div>

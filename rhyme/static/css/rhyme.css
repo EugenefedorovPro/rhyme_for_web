@@ -33,12 +33,12 @@ input[type='text'] {
     border-color: maroon;
     background-color: var(--light);
     padding: 5px;
-    margin-left: -5px;
+    /*margin-left: -5px;*/
 }
 
 
 /*submit button*/
-.submit {
+#input_button_rhyme {
     color: maroon;
     background-color: var(--light);
     border-style: none;
@@ -54,10 +54,3 @@ input[type='text'] {
 }
 
 
-
-/* Disable autofill styles */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 30px var(--light) inset !important;
-}

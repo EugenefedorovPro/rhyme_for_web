@@ -1,3 +1,6 @@
+
+
+
 /*grid*/
 #container {
    width: 100vw;
@@ -6,12 +9,40 @@
    /*color: red;*/
 }
 
+
 #row_1, #row_2, #row_3 {
    --bs-gutter-x: none;
    /*border-style: solid;*/
    /*color: green;*/
 }
 
+#row_1 {
+   border-style: solid;
+}
+
+
+/*row and columns of select block*/
+
+#row_2 {
+   /*border-style: solid;*/
+   height: 45px;
+   width: 100%;
+   margin-top: 52px;
+   position: fixed;
+
+}
+
+
+#column_2 {
+   /*border-style: dotted;*/
+   height: 100%;
+   display: flex;
+
+
+}
+#column_3 {
+   height: 100%;
+}
 
 /*#column_2, #column_3, #column_4, #column_5, #column_6  {*/
 /*   border-style: dotted;*/
@@ -22,6 +53,8 @@
    padding-top: 10px;
    padding-left: 10px;
    min-height: 80vh;
+   width: 100%;
+   margin-top: 100px;
 }
 
 /*elements within grid system*/
@@ -58,15 +91,15 @@ i {
 
 .bi-arrow-up, .bi-arrow-down, .bi-arrow-down-up {
    position: sticky;
-   left: 450px;
+   left: 91vw;
 }
 
 .bi-arrow-up {
-   bottom: 80%;
+   bottom: 60%;
 }
 
 .bi-arrow-down-up {
-   bottom: 50%;
+   bottom: 40%;
 }
 
 .bi-arrow-down  {
@@ -74,10 +107,5 @@ i {
 }
 
 
-@media all and (max-width: 500px) {
-   .bi-arrow-up, .bi-arrow-down, .bi-arrow-down-up {
-      left: 93vw;
-   }
-}
 
 
