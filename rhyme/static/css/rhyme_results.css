@@ -2,65 +2,82 @@
 
 
 /*grid*/
-#container {
-   width: 100vw;
-   height: 100vh;
-   /*border-style: double;*/
-   /*color: red;*/
-}
+/*#container {*/
+/*   width: 100vw;*/
+/*   height: 100vh;*/
+/*   !*border-style: double;*!*/
+/*   !*color: red;*!*/
+/*}*/
 
 
-#row_1, #row_2, #row_3 {
-   --bs-gutter-x: none;
-   /*border-style: solid;*/
-   /*color: green;*/
-}
+/*#row_1, #row_2, #row_3 {*/
+/*   --bs-gutter-x: none;*/
+/*   border-style: solid;*/
+/*   color: green;*/
+/*}*/
 
-#row_1 {
-   border-style: solid;
-}
+/*#row_1 {*/
+/*   border-style: solid;*/
+/*}*/
 
 
 /*row and columns of select block*/
 
-#row_2 {
-   /*border-style: solid;*/
-   height: 45px;
-   width: 100%;
-   margin-top: 52px;
-   position: fixed;
+/*#row_2 {*/
+/*   !*border-style: solid;*!*/
+/*   height: 45px;*/
+/*   width: 100%;*/
+/*   margin-top: 52px;*/
+/*   position: fixed;*/
 
-}
-
-
-#column_2 {
-   /*border-style: dotted;*/
-   height: 100%;
-   display: flex;
+/*}*/
 
 
-}
-#column_3 {
-   height: 100%;
-}
+/*#column_2 {*/
+/*   !*border-style: dotted;*!*/
+/*   height: 100%;*/
+/*   display: flex;*/
+
+
+/*}*/
+/*#column_3 {*/
+/*   height: 100%;*/
+/*}*/
 
 /*#column_2, #column_3, #column_4, #column_5, #column_6  {*/
 /*   border-style: dotted;*/
 /*   background-color: yellow;*/
 /*}*/
 
-#row_3 {
-   padding-top: 10px;
-   padding-left: 10px;
-   min-height: 80vh;
-   width: 100%;
-   margin-top: 100px;
-}
+/*#row_3 {*/
+/*   padding-top: 10px;*/
+/*   padding-left: 10px;*/
+/*   min-height: 80vh;*/
+/*   width: 100%;*/
+/*   margin-top: 100px;*/
+/*}*/
 
 /*elements within grid system*/
 
-.head_texts {
-   color: var(--darkcolor);
+/*.head_texts {*/
+/*   color: var(--darkcolor);*/
+/*}*/
+
+#row_2 {
+   margin-top: 56px;
+   position: fixed;
+   width: 100%;
+   background-color: var(--greenmid);
+   color: var(--darkblue);
+}
+
+#row_3 {
+   margin-top: 110px;
+}
+
+
+#column_2, #column_3 {
+   padding: 0;
 }
 
 .card_parent {
@@ -68,6 +85,7 @@
    width: 70vw;
    border-style: inset;
    background-color: var(--light);
+
 }
 
 .score, .assonance, .pattern {
@@ -94,6 +112,10 @@ i {
    left: 91vw;
 }
 
+.bi-arrow-up::before, .bi-arrow-down::before, .bi-arrow-down-up::before {
+   content: none;
+}
+
 .bi-arrow-up {
    bottom: 60%;
 }
@@ -107,5 +129,10 @@ i {
 }
 
 
+.offcanvas.offcanvas-end {
+   background-color: var(--light);
+   top: 56px;
+   width: fit-content;
+}
 
 

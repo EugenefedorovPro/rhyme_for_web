@@ -87,6 +87,6 @@
     }
 
     .box_wrapping_text {
-        height: 100vw;
-        width: 100vw; }
+        min-height: 86vw;
+        min-width: 86vw; }
 }

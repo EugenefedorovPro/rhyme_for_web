@@ -6,53 +6,109 @@
 {% block import_css %}
     <link rel="stylesheet" href="{% static 'css/rhyme_results.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/select.css' %}">
+{#    <link rel="stylesheet" href="{% static 'css/select.css' %}">#}
+    <link rel="stylesheet" href="{% static 'css/button_custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form_control_custom.css' %}">
 {% endblock %}
 
 
 {% block main %}
-<div id='container' class='container-flex text-left'>
-{#    row_1#}
-    {% include "navbar.html" %}
-{#row_2#}
-    {% include "select.html" %}
 
-    <div id="row_3" class='row'>
-        <div id='column_5' class='col'>
-            <h3 class="head_texts">Рифмы, ассонансы, консонансы</h3>
+    <div id='container' class='container-fluid text-left'>
+        <div id='row_1' class='row'>
+            <div id='column_1' class='col'>
+               {% include 'navbar.html' %}
+            </div>
+        </div>
+
+        <div id='row_2' class='row mb-3'>
+            <div id='column_2' class='col-4'>
+
+                <button id='filter' class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Фильтр</button>
+
+                <div class="offcanvas offcanvas-end text-wrap" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Фильтр</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col">
+                                    <h6>Штраф</h6>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            0
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <h6>Созвучие</h6>
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            0
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div id='column_3' class='col'>
+
+                <form id='input_form_on_rhyme_results' class="d-flex" role="search" action="{% url 'rhyme:rhyme_results' %}" method="post">
+                    {% csrf_token %}
+                    <input class="form-control" type="search" placeholder="Слово" aria-label="Search" name="target_word">
+                    <button id="button_find_rhyme_on_rhyme_results" class="btn btn-success" type="submit">
+                        <i class="bi bi-caret-right"></i>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+        <div id="row_3" class='row'>
+            <h4 class="head_texts">Рифмы, ассонансы, консонансы</h4>
             <p class="head_texts">Исходное слово: <strong>{{ stressed_word }}</strong> <br>
                 Количество рифм: <strong>{{ number_rhymes }}</strong>
 
                 {% for card in cards %}
                     <div class="rhyme" data-score="{{ card|slice:'1:2'|first }}" data-assonance="{{ card|slice:'2:3'|first }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                        </svg>
                         <i class="bi bi-list"></i>
 
                         <span class="head_texts rhymed_word" >{{ card|slice:'0:1'|first }}</span>
-
                         <br>
                         <div class='card_parent'>
-                            <div><span>Штраф - {{ card|slice:'1:2'|first }}</span></div>
-                            <div><span>Созвучность - {{ card|slice:'2:3'|first }}</span></div>
-                            <div><span>Паттерн<br>{{ card|slice:'3:4'|first }}</span></div>
+                            <div class="score"><span>Штраф - {{ card|slice:'1:2'|first }}</span></div>
+                            <div class="assonance"><span>Созвучность - {{ card|slice:'2:3'|first }}</span></div>
+                            <div class="pattern"><span>Паттерн<br>{{ card|slice:'3:4'|first }}</span></div>
                         </div>
                     </div>
                 {% endfor %}
+
         </div>
     </div>
+
+
+
+
+
     {#    beyond grid system#}
     {% include "scroll.html" %}
 
     <script>
-        let data_assonances_by_score = JSON.parse('{{ data_assonances_by_score|safe }}');
-        let data_scores_by_assonance = JSON.parse('{{ data_scores_by_assonance|safe }}');
-        let all_score_values = JSON.parse('{{ all_score_values|safe }}')
-        let all_assonance_values = JSON.parse('{{ all_assonance_values|safe }}')
+        {#let data_assonances_by_score = JSON.parse('{{ data_assonances_by_score|safe }}');#}
+        {#let data_scores_by_assonance = JSON.parse('{{ data_scores_by_assonance|safe }}');#}
+        {#let all_score_values = JSON.parse('{{ all_score_values|safe }}')#}
+        {#let all_assonance_values = JSON.parse('{{ all_assonance_values|safe }}')#}
     </script>
     <script src="{% static 'js/rhyme_results.js' %}"></script>
-
-</div>
 
 {% endblock %}

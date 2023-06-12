@@ -5,7 +5,7 @@
 /*}*/
 
 #button_filter {
-    color: var(--brownlight);
+    color: var(--bluemid);
     background-color: var(--light);
     /*background-color: red;*/
     border-radius: 0;
@@ -22,7 +22,7 @@
 }
 
 .form-select {
-    color: var(--brownlight);
+    color: var(--bluemid);
     background-color: var(--light);
     border-radius: 0;
     font-size: 1rem;
@@ -48,7 +48,7 @@
 
 /*block for text input*/
 #to_rhyme {
-    color: var(--brownlight);
+    color: var(--bluemid);
     background-color: var(--light);
     border-style: dotted;
     border-bottom-style: none;
@@ -88,6 +88,6 @@
 
 .spinner-grow {
     display: none;
-    color: var(--linkcolor);
+    color: var(--accent_maroon);
     align-items: center;
 }

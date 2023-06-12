@@ -1,0 +1,28 @@
+.form-control {
+    display: block;
+    width: 245%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--darkblue);
+    background-color: var(--light);
+    background-clip: padding-box;
+    border: solid var(--light);
+    border-radius: 0;
+}
+
+.form-control:focus {
+	color: var(--darkblue);
+	background-color: var(--light);
+	box-shadow: none;
+    border: solid var(--accent_maroon);
+}
+
+#input_form_on_rhyme {
+    width: 25vw;
+}
+
+#input_form_on_rhyme_results {
+    /*width: 25vw;*/
+}

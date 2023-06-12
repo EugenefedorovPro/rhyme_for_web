@@ -22,28 +22,28 @@ class arrangeElements {
     }
 }
 
-let arrange_elements = new arrangeElements()
-rect = arrange_elements.rect
-console.log('rect', rect)
-arrange_elements.arrange_elements()
+// let arrange_elements = new arrangeElements()
+// rect = arrange_elements.rect
+// console.log('rect', rect)
+// arrange_elements.arrange_elements()
 
 
 
 // spinner
 
-let submit = document.getElementById("input_button_rhyme");
-let icon = document.getElementById('icon_to_rhyme');
-let spinner = document.getElementById('spinner');
-let icon_parent = icon.parentNode;
-console.log('icon_parent', icon_parent)
-submit.addEventListener('click', function() {
-        spinner.style.display = 'inline-flex';
-        icon_parent.replaceChild(spinner, icon)
-        window.onload = function () {
-            icon_parent.replaceChild(icon, spinner)
-        }
-    }
-)
+// let submit = document.getElementById("input_button_rhyme");
+// let icon = document.getElementById('icon_to_rhyme');
+// let spinner = document.getElementById('spinner');
+// let icon_parent = icon.parentNode;
+// console.log('icon_parent', icon_parent)
+// submit.addEventListener('click', function() {
+//         spinner.style.display = 'inline-flex';
+//         icon_parent.replaceChild(spinner, icon)
+//         window.onload = function () {
+//             icon_parent.replaceChild(icon, spinner)
+//         }
+//     }
+// )
 
 
 // arrows
@@ -88,9 +88,9 @@ buttons.forEach(function(button) {
 
 
 // select
-let number = 4;
-console.log(data_assonances_by_score[number])
-console.log(data_scores_by_assonance)
+// let number = 4;
+// console.log(data_assonances_by_score[number])
+// console.log(data_scores_by_assonance)
 
 class Select {
     constructor(data_assonances_by_score, data_scores_by_assonance) {
@@ -238,9 +238,9 @@ class Select {
     }
 }
 
-let select = new Select(
-    data_assonances_by_score,
-    data_scores_by_assonance,
-)
-select.select_score()
-select.select_assonance()
+// let select = new Select(
+//     data_assonances_by_score,
+//     data_scores_by_assonance,
+// )
+// select.select_score()
+// select.select_assonance()
