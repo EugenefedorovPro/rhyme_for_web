@@ -20,16 +20,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-try:
-    from .dev_settings import *
-except ModuleNotFoundError:
-    # SECURITY WARNING: keep the secret key used in production secret!
+
+ENV = os.environ.get('ENV')
+if ENV == 'development':
     SECRET_KEY = '1234'
-    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
+    print(f"___ ENV: {ENV}, ALLOWED_HOSTS: {ALLOWED_HOSTS}, DEBUG: {DEBUG} ___")
+elif ENV == 'production':
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     DEBUG = False
-
-ALLOWED_HOSTS = ['*']
-
+    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
+    print(f"___ ENV: {ENV}, ALLOWED_HOSTS: {ALLOWED_HOSTS}, DEBUG: {DEBUG} ___")
+else:
+    SECRET_KEY = '1234'
+    DEBUG = True
+    ALLOWED_HOSTS = ['*']
+    print(f"___ ENV: None, ALLOWED_HOSTS: {ALLOWED_HOSTS}, DEBUG: {DEBUG} ___")
 
 # Application definition
 
@@ -118,12 +125,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
+STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "rhyme/static"),
-    ]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "rhyme/static"),
+#     ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS
+# CSRF_ALLOW_ALL = True

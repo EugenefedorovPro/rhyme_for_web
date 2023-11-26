@@ -3,3 +3,4 @@ __pycache__/
 dev_settings.py
 sqlite3.exe
 *draft*
+.env
