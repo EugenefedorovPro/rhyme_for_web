@@ -1,0 +1,28 @@
+version: '3.4'
+services:
+  django_rhyme:
+    image: eugene8pro/rhyme_for_web:latest
+    env_file:
+      - .env
+    environment:
+      - ENV=production
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_volume_rhyme:/home/eugene/static
+  nginx:
+    container_name: nginx_rhyme
+    build:
+      context: ./nginx_prod
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env
+    environment:
+      - ENV=production
+    volumes:
+      - static_volume_rhyme:/home/eugene/static
+    depends_on:
+      - django_rhyme
+volumes:
+  static_volume_rhyme:
