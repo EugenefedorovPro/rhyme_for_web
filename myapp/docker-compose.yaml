@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   web:
-    container_name: django_rhyme
+    container_name: django_rhyme_main
     build:
       context: .
     env_file:
@@ -12,7 +12,7 @@ services:
       - "8000:8000"
     volumes:
       - static_volume_rhyme:/home/eugene/static
-      - .:/home/eugene
+#      - .:/home/eugene
   nginx:
     container_name: nginx_rhyme
     build:

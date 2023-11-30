@@ -4,7 +4,6 @@ from django.shortcuts import render
 import json
 from rhyme.utils.rhyme_results.data_score_assonance import DataScoreAssonance
 
-
 def rhyme_results(request):
    unstressed_word = request.POST["target_word"]
    try:
