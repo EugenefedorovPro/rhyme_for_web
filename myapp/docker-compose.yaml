@@ -15,8 +15,12 @@ services:
     volumes:
       - static_volume_rhyme:/home/eugene/static
 <<<<<<< HEAD
+<<<<<<< HEAD
       - .:/home/eugene/
 
+=======
+#      - .:/home/eugene
+>>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
 =======
 #      - .:/home/eugene
 >>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed

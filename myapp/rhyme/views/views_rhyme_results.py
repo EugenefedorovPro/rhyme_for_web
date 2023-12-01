@@ -3,6 +3,7 @@ from rhyme_rus.rhyme import rhyme_with_stresses
 from django.shortcuts import render
 import json
 <<<<<<< HEAD
+<<<<<<< HEAD
 import pdb
 from rhyme.utils.rhyme_results.data_score_assonance import DataScoreAssonance
 
@@ -50,6 +51,8 @@ def rhyme_results(request):
         context = {"unstressed_word": unstressed_word, "all_stresses": all_stresses}
         return render(request, "rhyme.html", context)
 =======
+=======
+>>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
 from rhyme.utils.rhyme_results.data_score_assonance import DataScoreAssonance
 
 def rhyme_results(request):
@@ -93,4 +96,7 @@ def rhyme_results(request):
       return render(request, 'rhyme.html', context)
 
 
+<<<<<<< HEAD
+>>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
+=======
 >>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
