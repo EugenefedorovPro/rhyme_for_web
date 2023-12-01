@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <<<<<<<< HEAD:docker-compose.prod.yaml
+=======
+>>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
 version: '3.4'
 services:
   django_rhyme:
@@ -27,6 +30,7 @@ services:
       - django_rhyme
 volumes:
   static_volume_rhyme:
+<<<<<<< HEAD
 ========
 version: '3.4'
 services:
@@ -56,3 +60,5 @@ services:
 volumes:
     static_volume_rhyme:
 >>>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed:myapp/docker-compose.yaml
+=======
+>>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
