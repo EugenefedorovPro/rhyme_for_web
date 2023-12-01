@@ -37,21 +37,25 @@
                             <div class="row">
                                 <div class="col">
                                     <h6>Штраф</h6>
+									{% for score in unique_scores %}
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            0
+										<input class="form-check-input" type="checkbox" value="{{ score }}" id="score{{ score }}">
+                                        <label class="form-check-label" for="score{{ score }}">
+											{{ score }}
                                         </label>
                                     </div>
+									{% endfor %}
                                 </div>
                                 <div class="col">
-                                    <div class="form-check">
-                                        <h6>Созвучие</h6>
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            0
+									<h6>Созвучие</h6>
+									{% for assonance in unique_assonances %}
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="{{ assonance }}" id="assonance{{ assonance }}">
+                                        <label class="form-check-label" for="assonance{{ assonance }}">
+											{{ assonance }}
                                         </label>
                                     </div>
+									{% endfor %}
                                 </div>
                             </div>
                         </div>
