@@ -14,8 +14,12 @@ services:
       - "8000:8000"
     volumes:
       - static_volume_rhyme:/home/eugene/static
+<<<<<<< HEAD
       - .:/home/eugene/
 
+=======
+#      - .:/home/eugene
+>>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
   nginx:
     container_name: nginx_rhyme
     build:
