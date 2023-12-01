@@ -1,6 +1,7 @@
 from django.urls import path
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 from .views import (
     views_title,
     views_rhyme,
@@ -26,6 +27,8 @@ urlpatterns = [
 =======
 =======
 >>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
+=======
+>>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
 from .views import views_title, views_rhyme, views_rhyme_results, views_stress, views_transcribe
 
 app_name = 'rhyme'
@@ -40,6 +43,9 @@ urlpatterns = [
     ]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
+=======
 >>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed
 =======
 >>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed

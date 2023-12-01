@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:docker-compose.prod.yaml
 version: '3.4'
 services:
   django_rhyme:
@@ -26,3 +27,32 @@ services:
       - django_rhyme
 volumes:
   static_volume_rhyme:
+========
+version: '3.4'
+services:
+  web:
+    container_name: django_rhyme_main
+    build:
+      context: .
+    env_file:
+        - ../.env
+    environment:
+      - ENV=development
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_volume_rhyme:/home/eugene/static
+#      - .:/home/eugene
+  nginx:
+    container_name: nginx_rhyme
+    build:
+      context: ./nginx
+    ports:
+      - "8081:8081"
+    volumes:
+      - static_volume_rhyme:/home/eugene/static
+    depends_on:
+        - web
+volumes:
+    static_volume_rhyme:
+>>>>>>>> 3553f703e382e2fab61378fa69d1b3fcc4114bed:myapp/docker-compose.yaml
