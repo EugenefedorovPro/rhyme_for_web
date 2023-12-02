@@ -32,14 +32,21 @@
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-
                         <div class="container text-center">
                             <div class="row">
                                 <div class="col">
                                     <h6>Штраф</h6>
+
+                                    <div class="form-check">
+										<input class="form-check-input score_check_box" type="checkbox" value="all" id="scoreall">
+                                        <label class="form-check-label" for="scoreall">
+											 all 
+                                        </label>
+                                    </div>
+
 									{% for score in unique_scores %}
                                     <div class="form-check">
-										<input class="form-check-input" type="checkbox" value="{{ score }}" id="score{{ score }}">
+										<input class="form-check-input score_check_box" type="checkbox" value="{{ score }}" id="score{{ score }}">
                                         <label class="form-check-label" for="score{{ score }}">
 											{{ score }}
                                         </label>
@@ -48,14 +55,23 @@
                                 </div>
                                 <div class="col">
 									<h6>Созвучие</h6>
+
+									<div class="form-check">
+										<input class="form-check-input assonance_check_box" type="checkbox" value="all" id="assonanceall">
+                                        <label class="form-check-label" for="assonanceall">
+											all	
+                                        </label>
+                                    </div>
+
 									{% for assonance in unique_assonances %}
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value="{{ assonance }}" id="assonance{{ assonance }}">
+										<input class="form-check-input assonance_check_box" type="checkbox" value="{{ assonance }}" id="assonance{{ assonance }}">
                                         <label class="form-check-label" for="assonance{{ assonance }}">
 											{{ assonance }}
                                         </label>
                                     </div>
 									{% endfor %}
+
                                 </div>
                             </div>
                         </div>
@@ -64,6 +80,7 @@
                 </div>
 
             </div>
+
 
             <div id='column_3' class='col'>
 
@@ -103,7 +120,6 @@
 
 
 
-
     {#    beyond grid system#}
     {% include "scroll.html" %}
 
@@ -114,5 +130,6 @@
         {#let all_assonance_values = JSON.parse('{{ all_assonance_values|safe }}')#}
     </script>
     <script src="{% static 'js/rhyme_results.js' %}"></script>
+    <script src="{% static 'js/filter.js' %}"></script>
 
 {% endblock %}
