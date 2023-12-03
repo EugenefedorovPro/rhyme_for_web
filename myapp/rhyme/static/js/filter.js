@@ -89,8 +89,8 @@ const filter = function () {
 			}
 		});
 
-		var nRhymes = 0;
 		allCards.forEach((element) => {
+			let nRhymes = 0;
 			const dataScore = element.getAttribute("data-score");
 			const dataAssonance = element.getAttribute("data-assonance");
 
@@ -109,9 +109,8 @@ const filter = function () {
 			} else {
 				element.style.display = "none"; // Change to "none" to hide
 			}
+				nRhymesElement.innerHTML = nRhymes;
 		});
-
-		nRhymesElement.innerHTML = nRhymes;
 	}
 };
 

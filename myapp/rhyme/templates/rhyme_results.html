@@ -98,7 +98,7 @@
         <div id="row_3" class='row'>
             <h4 class="head_texts">Рифмы, ассонансы, консонансы</h4>
             <p class="head_texts">Исходное слово: <strong>{{ stressed_word }}</strong> <br>
-                Количество рифм: <strong>{{ number_rhymes }}</strong>
+                Количество рифм: <strong id="n_rhymes">{{ number_rhymes }}</strong>
 
                 {% for card in cards %}
                     <div class="rhyme" data-score="{{ card|slice:'1:2'|first }}" data-assonance="{{ card|slice:'2:3'|first }}">
