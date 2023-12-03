@@ -1,113 +1,15 @@
-
 .form-check-input:checked {
-    background-color: maroon;
-    border-color: maroon;
+	background-color: maroon;
+	border-color: var(--accent_maroon);
 }
 
-.form-check-input[type=checkbox] {
-    border-radius: 0;
+.form-check-input[type="checkbox"] {
+	border-radius: 0;
 }
 
 .form-check-input:focus {
-    border-color: none;
-    outline: 0;
-    box-shadow: none;
+	border-color: none;
+	outline: 0;
+	box-shadow: none;
 }
 
-
-
-
-
-/*select blocks*/
-
-/*#div_sidebar {*/
-/*    align-items: center;*/
-/*}*/
-
-/*#button_filter { */
-/*    color: var(--bluemid); */
-/*    background-color: var(--light); */
-/*    /1*background-color: red;*/ */
-/*    border-radius: 0; */
-/*    font-size: 1rem; */
-/*    /1*border: 1px groove;*/ */
-/*    width: 100%; */
-/*    height: inherit; */
-/*    text-align: left; */
-/*    padding-left: 10px; */
-/*} */
-
-/*#filter { */
-/*    /1*text-align: center;*/ */
-/*} */
-
-/*.form-select { */
-/*    color: var(--bluemid); */
-/*    background-color: var(--light); */
-/*    border-radius: 0; */
-/*    font-size: 1rem; */
-/*    border: 1px groove; */
-/*} */
-
-
-/* .form-select .score_option, .assonance_option { */
-/*    font-size: 0.9rem !important; */
-/*} */
-
-
-/*/1*variants*/ */
-/*#form_on_rhyme_results { */
-/*    display: flex; */
-/*    height: inherit; */
-/*} */
-
-/*/1*#to_rhyme, #input_button_rhyme {*/ */
-/*/1*    flex: 1;*/ */
-/*/1*}*/ */
-
-
-/*/1*block for text input*/ */
-/*#to_rhyme { */
-/*    color: var(--bluemid); */
-/*    background-color: var(--light); */
-/*    border-style: dotted; */
-/*    border-bottom-style: none; */
-/*    border-top-style: none; */
-/*    border-color: maroon; */
-/*    height: inherit; */
-/*    width: 460%; */
-/*    text-align: left; */
-/*    padding-left: 10px; */
-/*} */
-
-
-/*#input_button_rhyme { */
-/*    display: inline-block; */
-/*    width: 100%; */
-/*    height: 100%; */
-/*    vertical-align: middle; */
-/*    background-repeat: no-repeat; */
-/*    background-position: center; */
-/*    background-size: 100%; */
-/*    background-color: var(--light); */
-/*    border-style: none; */
-/*} */
-
-/*.bi-caret-right { */
-/*    fill: maroon; */
-/*} */
-
-/*/1*spinner and icon *1/ */
-/*#icon_to_rhyme, .spinner-grow { */
-/*    margin-left: 8px; */
-/*} */
-
-/*#icon_to_rhyme { */
-/*    text-align: inherit; */
-/*} */
-
-/*.spinner-grow { */
-/*    display: none; */
-/*    color: var(--accent_maroon); */
-/*    align-items: center; */
-/*} */
