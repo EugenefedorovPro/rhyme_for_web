@@ -6,7 +6,7 @@
 {% block import_css %}
     <link rel="stylesheet" href="{% static 'css/rhyme_results.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-{#    <link rel="stylesheet" href="{% static 'css/select.css' %}">#}
+    <link rel="stylesheet" href="{% static 'css/select.css' %}">
     <link rel="stylesheet" href="{% static 'css/button_custom.css' %}">
     <link rel="stylesheet" href="{% static 'css/form_control_custom.css' %}">
 {% endblock %}
@@ -118,18 +118,7 @@
     </div>
 
 
-
-
-    {#    beyond grid system#}
-    {% include "scroll.html" %}
-
-    <script>
-        {#let data_assonances_by_score = JSON.parse('{{ data_assonances_by_score|safe }}');#}
-        {#let data_scores_by_assonance = JSON.parse('{{ data_scores_by_assonance|safe }}');#}
-        {#let all_score_values = JSON.parse('{{ all_score_values|safe }}')#}
-        {#let all_assonance_values = JSON.parse('{{ all_assonance_values|safe }}')#}
-    </script>
-    <script src="{% static 'js/rhyme_results.js' %}"></script>
-    <script src="{% static 'js/filter.js' %}"></script>
+    <script src="{% static 'js/filter_results.js' %}"></script>
+    <script src="{% static 'js/untoggle_card_results.js' %}"></script>
 
 {% endblock %}

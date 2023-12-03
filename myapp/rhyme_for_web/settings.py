@@ -26,6 +26,7 @@ if ENV == 'development':
     SECRET_KEY = '1234'
     DEBUG = True
     ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
+    CSRF_TRUSTED_ORIGINS = os.environ.get('ALLOWED_HOSTS').split(',')
     print(f"___ ENV: {ENV}, ALLOWED_HOSTS: {ALLOWED_HOSTS}, DEBUG: {DEBUG} ___")
 elif ENV == 'production':
     SECRET_KEY = os.environ.get('SECRET_KEY')
