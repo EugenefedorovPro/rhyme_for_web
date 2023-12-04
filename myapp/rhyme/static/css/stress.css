@@ -1,3 +1,10 @@
+.form-control:focus {
+    color: none;
+    background-color: none;
+    border-color: var(--accent_maroon);
+    outline: 0;
+    box-shadow: none;
+}
 
 .btn,
 .btn:hover {
@@ -15,7 +22,7 @@
 
 #unstressed_card {
 	color: var(--darkblue);
-	margin-top: 20px;
+	margin-top: 80px;
 }
 
 #stressed_card {
