@@ -9,7 +9,6 @@
 {% block main %}
     <div class="container" id="container_stress">
 
-		<h2 id="title_stress_page">Нейросеть ставит ударение с точностью 73%</h2>
 
 		<div class="row">
 			<div class="col">
@@ -21,9 +20,11 @@
 					  <div class="form-group">
 						  <label for="unstressed_word"><h3>Безударное слово</h3></label>
 						<input type="text" class="form-control" id="unstressed_word" aria-describedby="stress_restrictions" placeholder="Напишите">
-						<small id="stress_restrictions" class="form-text text-muted">большая буква, дефис +; пробел -</small>
+						<small id="stress_restrictions" class="form-text text-muted">дефис +; пробел, большая буква -</small>
 					  </div>
-					  <button type="submit" class="btn" onclick="getStressedWord(); return false;">Старт</button>
+					  <button type="submit" class="btn" onclick="getStressedWord(); return false;">Старт
+						<!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
+					  </button>
 					</form>
 				  </div>
 				</div>
@@ -36,10 +37,22 @@
 			<div class="col">
 				<div class="card" id="stressed_card">
 				  <div class="card-body">
-					<h3>Слово с ударением</h3>
-					<span id="stressed_word">Stressed Word</span>
+					<h3 id="title_stressed_card">Слово с ударением</h3>
+					<span id="stressed_word">*****</span>
 				  </div>
 				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col" id="spinner_col">
+				<div id="spinner" class="spinner-border" role="status" style="display:none"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col" id="message_col">
+				<span id="message"></span>
 			</div>
 		</div>
 
@@ -47,14 +60,50 @@
 
 
 <script>
-	function getStressedWord() {
-			let unstressedWord = document.getElementById("unstressed_word").value;
-			let stressedWordElement = document.getElementById("stressed_word");
-			stressedWordElement.innerHTML = unstressedWord;
-		}
+    function getStressedWord() {
+		let messageElement = document.getElementById("message");
+		messageElement.innerHTML = ""
 
+		let titleStressedCardElement = document.getElementById("title_stressed_card")
+		titleStressedCardElement.innerHTML = "Словo с ударением";
+
+		let spinnerElement = document.getElementById("spinner");
+		spinnerElement.style.display = "block";
+
+        let unstressedWord = document.getElementById("unstressed_word").value;
+        let stressedWordElement = document.getElementById("stressed_word");
+        let csrfToken = "{{csrf_token}}";
+
+        fetch('{% url "rhyme:get_stressed_word" %}', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken,
+            },
+            body: JSON.stringify({
+                "unstressed_word": unstressedWord,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+			let stressedWord = data.stressed_word;
+			let message = data.message;
+				if (Array.isArray(stressedWord) && stressedWord.length > 1) {
+						titleStressedCardElement.innerHTML = "Слова с ударением";
+					};	
+				if (Array.isArray(stressedWord)) {
+						stressedWord = stressedWord.join(", ");
+					}; 
+
+				stressedWordElement.innerHTML = stressedWord;
+				spinnerElement.style.display = "none";
+				messageElement.innerHTML = message;
+        })
+        .catch(error => {
+            console.log("Error: ", error);
+        });
+    }
 </script>
-
 
 
 {% endblock %}

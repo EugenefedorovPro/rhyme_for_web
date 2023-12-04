@@ -1,19 +1,12 @@
-#title_stress_page {
-	text-align: center;
-	color: var(--darkblue);
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
 
-.btn, .btn:hover {
+.btn,
+.btn:hover {
 	background-color: var(--accent_maroon);
 	color: var(--light);
 	margin-top: 20px;
 	padding-left: 45px;
 	padding-right: 45px;
 }
-
-
 
 #unstressed_card,
 #stressed_card {
@@ -22,6 +15,7 @@
 
 #unstressed_card {
 	color: var(--darkblue);
+	margin-top: 20px;
 }
 
 #stressed_card {
@@ -32,3 +26,24 @@
 #stressed_word {
 	color: var(--accent_maroon);
 }
+
+#spinner_col {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+	color: var(--accent_maroon);
+}
+
+#spinner {
+	margin-right: 8vw;
+	width: 3rem;
+	height:3rem;
+}
+
+#message_col {
+	text-align: center;
+	margin-left: 20px;
+	margin-right: 20px;
+	color: var(--darkblue);
+}
+

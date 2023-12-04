@@ -5,6 +5,8 @@ from .views import (
     views_rhyme_results,
     views_stress,
     views_transcribe,
+    views_stress_fetch,
+
 )
 from django.views.generic import RedirectView
 
@@ -20,4 +22,6 @@ urlpatterns = [
         "rhyme/rhyme_results/", views_rhyme_results.rhyme_results, name="rhyme_results"
     ),
     path("favicon.ico", RedirectView.as_view(url="/static/favicon.ico")),
+    path("stress/results/", views_stress_fetch.get_stressed_word, name="get_stressed_word"),
+
 ]
