@@ -1,8 +1,60 @@
 {% extends "base_rhyme.html" %}
 {% block title %}put_stress{% endblock %}
 
+{% block import_css %}
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'css/stress.css' %}">
+{% endblock %}
+
 {% block main %}
-    <div>
-    <h3>Найди ударение в слове</h3>
-    </div>
+    <div class="container" id="container_stress">
+
+		<h2 id="title_stress_page">Нейросеть ставит ударение с точностью 73%</h2>
+
+		<div class="row">
+			<div class="col">
+
+				<div class="card" id="unstressed_card">
+				  <div class="card-body">
+					<form>
+						{% csrf_token %}
+					  <div class="form-group">
+						  <label for="unstressed_word"><h3>Безударное слово</h3></label>
+						<input type="text" class="form-control" id="unstressed_word" aria-describedby="stress_restrictions" placeholder="Напишите">
+						<small id="stress_restrictions" class="form-text text-muted">большая буква, дефис +; пробел -</small>
+					  </div>
+					  <button type="submit" class="btn" onclick="getStressedWord(); return false;">Старт</button>
+					</form>
+				  </div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col">
+				<div class="card" id="stressed_card">
+				  <div class="card-body">
+					<h3>Слово с ударением</h3>
+					<span id="stressed_word">Stressed Word</span>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+<script>
+	function getStressedWord() {
+			let unstressedWord = document.getElementById("unstressed_word").value;
+			let stressedWordElement = document.getElementById("stressed_word");
+			stressedWordElement.innerHTML = unstressedWord;
+		}
+
+</script>
+
+
+
 {% endblock %}

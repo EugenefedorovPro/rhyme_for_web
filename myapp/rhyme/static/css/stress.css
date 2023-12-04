@@ -1,0 +1,34 @@
+#title_stress_page {
+	text-align: center;
+	color: var(--darkblue);
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.btn, .btn:hover {
+	background-color: var(--accent_maroon);
+	color: var(--light);
+	margin-top: 20px;
+	padding-left: 45px;
+	padding-right: 45px;
+}
+
+
+
+#unstressed_card,
+#stressed_card {
+	background-color: var(--light);
+}
+
+#unstressed_card {
+	color: var(--darkblue);
+}
+
+#stressed_card {
+	margin-top: 20px;
+	color: var(--darkblue);
+}
+
+#stressed_word {
+	color: var(--accent_maroon);
+}
