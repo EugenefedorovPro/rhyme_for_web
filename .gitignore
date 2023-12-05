@@ -4,3 +4,9 @@ dev_settings.py
 sqlite3.exe
 *draft*
 .env
+
+.eslintrc.js
+node_modules/
+package-lock.json
+package.json
+
