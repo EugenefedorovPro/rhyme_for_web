@@ -15,22 +15,22 @@
 	padding-right: 45px;
 }
 
-#unstressed_card,
-#stressed_card {
+#input_card,
+#output_card {
 	background-color: var(--light);
 }
 
-#unstressed_card {
+#input_card {
 	color: var(--darkblue);
 	margin-top: 80px;
 }
 
-#stressed_card {
+#output_card {
 	margin-top: 20px;
 	color: var(--darkblue);
 }
 
-#stressed_word {
+#output_word {
 	color: var(--accent_maroon);
 }
 

@@ -1,6 +1,6 @@
 
 allowed_characters = [
-    "_",
+    "-",
     "а",
     "б",
     "в",

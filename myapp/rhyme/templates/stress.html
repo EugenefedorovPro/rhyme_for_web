@@ -20,13 +20,13 @@
 					</div>
 				</div>
 
-				<div class="card" id="unstressed_card">
+				<div class="card" id="input_card">
 				  <div class="card-body">
 					<form>
 						{% csrf_token %}
 					  <div class="form-group">
-						  <label for="unstressed_word"><h3>Безударное слово</h3></label>
-						<input type="text" class="form-control" id="unstressed_word" aria-describedby="stress_restrictions" placeholder="Напишите">
+						  <label for="input_word"><h3>Безударное слово</h3></label>
+						<input type="text" class="form-control" id="input_word" aria-describedby="stress_restrictions" placeholder="Напишите">
 						<small id="stress_restrictions" class="form-text text-muted">дефис +; пробел, большая буква -</small>
 					  </div>
 					  <button type="submit" class="btn" onclick="getStressedWord(); return false;">Старт
@@ -42,10 +42,10 @@
 
 		<div class="row">
 			<div class="col">
-				<div class="card" id="stressed_card">
+				<div class="card" id="output_card">
 				  <div class="card-body">
-					<h3 id="title_stressed_card">Слово с ударением</h3>
-					<span id="stressed_word">*****</span>
+					<h3 id="title_output_card">Слово с ударением</h3>
+					<span id="output_word">*****</span>
 				  </div>
 				</div>
 			</div>
@@ -71,14 +71,14 @@
 		let messageElement = document.getElementById("message");
 		messageElement.innerHTML = ""
 
-		let titleStressedCardElement = document.getElementById("title_stressed_card")
+		let titleStressedCardElement = document.getElementById("title_output_card")
 		titleStressedCardElement.innerHTML = "Словo с ударением";
 
 		let spinnerElement = document.getElementById("spinner");
 		spinnerElement.style.display = "block";
 
-        let unstressedWord = document.getElementById("unstressed_word").value;
-        let stressedWordElement = document.getElementById("stressed_word");
+        let unstressedWord = document.getElementById("input_word").value;
+        let stressedWordElement = document.getElementById("output_word");
         let csrfToken = "{{csrf_token}}";
 
         fetch('{% url "rhyme:get_stressed_word" %}', {

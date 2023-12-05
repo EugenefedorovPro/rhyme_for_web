@@ -1,4 +1,3 @@
-
 import json
 import pdb
 from rhyme_rus.seeds.mysql_connect import my_sql

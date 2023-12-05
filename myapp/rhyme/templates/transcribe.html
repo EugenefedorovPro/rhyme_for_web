@@ -1,9 +1,111 @@
-{% extends "base_rhyme.html" %}
-{% block title %}put_stress{% endblock %}
 
-{% block main %}
-    <div>
-        <h3>Транскрибируй</h3>
-    </div>
+{% extends "base_rhyme.html" %}
+{% block title %}transcribe{% endblock %}
+
+{% block import_css %}
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'css/stress.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 {% endblock %}
 
+{% block main %}
+    <div class="container" id="container_stress">
+
+
+		<div class="row">
+			<div class="col">
+
+				<div id='row_1' class='row'>
+					<div id='column_1' class='col'>
+					   {% include 'navbar.html' %}
+					</div>
+				</div>
+
+				<div class="card" id="input_card">
+				  <div class="card-body">
+					<form>
+						{% csrf_token %}
+					  <div class="form-group">
+						  <label for="input_word"><h3>Слово с ударением</h3></label>
+						<input type="text" class="form-control" id="input_word" aria-describedby="stress_restrictions" placeholder="Напишите">
+						<small id="stress_restrictions" class="form-text text-muted">ударение, дефис +; пробел, большая буква -</small>
+					  </div>
+					  <button type="submit" class="btn" onclick="getTranscription(); return false;">Старт
+						<!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
+					  </button>
+					</form>
+				  </div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col">
+				<div class="card" id="output_card">
+				  <div class="card-body">
+					<h3 id="title_output_card">Транскрипция</h3>
+					<span id="output_word">*****</span>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col" id="spinner_col">
+				<div id="spinner" class="spinner-border" role="status" style="display:none"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col" id="message_col">
+				<span id="message"></span>
+			</div>
+		</div>
+
+	</div>
+
+
+<script>
+    function getTranscription() {
+		let messageElement = document.getElementById("message");
+		messageElement.innerHTML = ""
+
+		let titleOutputCardElement = document.getElementById("title_output_card")
+		titleOutputCardElement.innerHTML = "Транскрипция";
+
+		let spinnerElement = document.getElementById("spinner");
+		spinnerElement.style.display = "block";
+
+        let inputWord = document.getElementById("input_word").value;
+        let transcriptionElement = document.getElementById("output_word");
+        let csrfToken = "{{csrf_token}}";
+
+        fetch('{% url "rhyme:get_transcription" %}', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken,
+            },
+            body: JSON.stringify({
+                "input_word": inputWord,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+			let transcriptionJs = data.transcription;
+			console.log(data.transcription);
+			let message = data.message;
+			transcriptionElement.innerHTML = transcriptionJs;
+			spinnerElement.style.display = "none";
+			messageElement.innerHTML = message;
+        })
+        .catch(error => {
+            console.log("Error: ", error);
+        });
+    }
+</script>
+
+
+{% endblock %}
