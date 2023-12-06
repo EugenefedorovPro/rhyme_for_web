@@ -11,7 +11,7 @@ def get_stressed_word(request):
     unstressed_word = request_data.get("unstressed_word")
 
     # default message for invalid unstressed word
-    message = "Напишите слово следуя правилам: запрещены большие буквы, среди небуквенных знаков разрешен только дефис"
+    message = "Напишите слово следуя правилам: запрещены большие буквы, среди небуквенных знаков разрешен только дефис /-/"
     stressed_word = "*****"
     data = {"stressed_word": stressed_word, "message": message}
     

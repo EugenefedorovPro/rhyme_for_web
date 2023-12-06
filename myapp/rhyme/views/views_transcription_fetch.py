@@ -11,7 +11,9 @@ def get_transcription(request):
     word_with_accent = request_data.get("input_word")
 
     # default message for invalid word
-    message = "Напишите слово следуя правилам: запрещены большие буквы, среди небуквенных знаков разрешены дефис /-/ и ударение /'/"
+    message = '''Напишите слово, следуя правилам: только русский алфавит,
+                 запрещены большие буквы, среди небуквенных знаков
+                 разрешены дефис /-/ и ударение /'/'''
     transcription = "*****"
     data = {"transcription": transcription, "message": message}
     

@@ -26,12 +26,11 @@
 					<form>
 						{% csrf_token %}
 					  <div class="form-group">
-						  <label for="input_word"><h3>Слово с ударением</h3></label>
+						<label for="input_word"><h3>Слово с ударением</h3></label>
 						<input type="text" class="form-control" id="input_word" aria-describedby="stress_restrictions" placeholder="Напишите">
-						<small id="stress_restrictions" class="form-text text-muted">ударение, дефис +; пробел, большая буква -</small>
+						<small id="stress_restrictions" class="form-text text-muted">разрешены: ударение /'/, дефис /-/; запрещены: пробел, большая буква -</small>
 					  </div>
 					  <button type="submit" class="btn" onclick="getTranscription(); return false;">Старт
-						<!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
 					  </button>
 					</form>
 				  </div>

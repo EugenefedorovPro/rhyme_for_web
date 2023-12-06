@@ -1,13 +1,25 @@
+import json
+import pdb
 import pandas as pd
 from rhyme_rus.rhyme import rhyme_with_stresses
 from django.shortcuts import render
-import json
-import pdb
 from rhyme.utils.rhyme_results.data_score_assonance import DataScoreAssonance
-
+from rhyme.views.allowed_characters import allowed_characters
 
 def rhyme_results(request):
     unstressed_word = request.POST["target_word"]
+    # pdb.set_trace()
+
+    # check words validity
+    unstressed_word = unstressed_word.strip()
+    allowed_characters.append("'")
+    disallowed_characters = [_ for _ in unstressed_word if _ not in allowed_characters]
+    if not unstressed_word or disallowed_characters:
+        message = '''Напишите слово следуя правилам: запрещены большие буквы, 
+                     среди небуквенных знаков разрешены дефис /-/ и знак ударения /'/'''
+        context = {"message": message}
+        return render(request, "rhyme.html", context)
+
     try:
         table_of_rhymes, all_stresses, stressed_word = rhyme_with_stresses(
             unstressed_word
