@@ -25,6 +25,9 @@ def get_transcription(request):
         data = {"transcription": transcription, "message": message}
         return JsonResponse(data)
 
+    # remove initial and final blank spaces
+    word_with_accent = word_with_accent.strip()
+
     allowed_characters.append("'")
     disallowed_characters = [_ for _ in word_with_accent if _ not in allowed_characters]
     if disallowed_characters:
