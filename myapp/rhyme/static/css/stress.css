@@ -1,9 +1,12 @@
+/* stress */
+
 .form-control:focus {
     color: none;
     background-color: none;
     border-color: var(--accent_maroon);
     outline: 0;
     box-shadow: none;
+	border-radius: 0;
 }
 
 .btn,
@@ -13,11 +16,13 @@
 	margin-top: 20px;
 	padding-left: 45px;
 	padding-right: 45px;
+	border-radius: 0;
 }
 
 #input_card,
 #output_card {
 	background-color: var(--light);
+	border-radius: 0;
 }
 
 #input_card {

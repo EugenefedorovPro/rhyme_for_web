@@ -1,0 +1,81 @@
+{% extends "base_rhyme.html" %}
+{% block title %}about{% endblock %}
+
+{% block import_css %}
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="container" id="container_stress">
+
+		<div class="row">
+			<div class="col">
+				<div id='row_1' class='row'>
+					<div id='column_1' class='col'>
+					   {% include 'navbar.html' %}
+					</div>
+				</div>
+		  </div>
+		</div>
+
+		<div class="row" id="tabs_row">
+			<div class="col" id="tabs_col">
+
+			  <ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item">
+				  <a class="nav-link" id="rhyme-tab" data-bs-toggle="tab" href="#rhyme" role="tab" aria-selected="false">Рифма</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" id="stress-tab" data-bs-toggle="tab" href="#stress" role="tab" aria-selected="false">Ударение</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" id="transcribe-tab" data-bs-toggle="tab" href="#transcribe" role="tab" aria-selected="false">Транскрипция</a>
+				</li>
+			  </ul>
+			  <div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade" id="rhyme" role="tabpanel" aria-labelledby="profile-tab">
+					<div class="card" id="rhyme_card">
+					  <div class="card-body">
+						<div>Rhyme</div>
+					  </div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="stress" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="card" id="stress_card">
+					  <div class="card-body">
+						<div>Stress</div>
+					  </div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="transcribe" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="card" id="transcribe_card">
+					  <div class="card-body">
+						<div>Transcribe</div>
+					  </div>
+					</div>
+				</div>
+			  </div>
+
+
+			<div class="row">
+				<div class="col">
+					<div class="card" id="initial_card">
+					  <div class="card-header">
+						Первый открытый алгоритм для подбора рифм на русском языке.
+					  </div>
+					  <div class="card-body">
+						<blockquote class="blockquote mb-0">
+						  <p>В основе: en.wiktionary.org, две авторские нейросети.</p>
+						  <footer class="blockquote-footer">Автор проекта и разработчик: <cite title="Source Title">Евгений Проскуликов</cite></footer>
+						</blockquote>
+					  </div>
+					</div>
+				</div>
+			</div>
+	  </div>
+	</div>
+
+
+{% endblock %}
