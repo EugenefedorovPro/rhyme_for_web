@@ -1,11 +1,15 @@
-#spinner {
+/* spinner */
+#spinner_word {
 	margin-top: 25px;
 	color: var(--accent_maroon);
 }
 
+#spinner_stress {
+	margin-top: 25px;
+	color: var(--accent_maroon);
+}
 
 /*rhyme*/
-
 .group {
     position: absolute;
     top: 27vh;

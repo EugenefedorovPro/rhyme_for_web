@@ -16,7 +16,8 @@
 	width: 65%;
 }
 
-#button_find_rhyme_on_rhyme {
+#button_find_rhyme_on_rhyme,
+#button_select_stress {
 	background-color: var(--yellowlight);
 	color: var(--darkblue);
 	border: none;
@@ -25,7 +26,8 @@
 
 #filter:hover,
 #button_find_rhyme_on_rhyme:hover,
-#button_find_rhyme_on_rhyme_results:hover {
+#button_find_rhyme_on_rhyme_results:hover,
+#button_select_stress:hover {
 	background-color: var(--yellowdark);
 	color: var(--accent_midnighblue);
 }

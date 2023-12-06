@@ -27,6 +27,8 @@
                        <span>Подобрать</span>
                     </button>
                 </div>
+				<div id="spinner_word" class="spinner-border" role="status" style="display:none"></div>
+
             </form>
 
         </fieldset><br>
@@ -36,27 +38,48 @@
 
     <div class="group" id="choose_stress">
         {% if all_stresses %}
+			<script>
+				const elem = document.getElementById("input_word_to_rhyme");
+				elem.remove();
+				localtion.reload(true)
+			</script>
             <p><strong>В словаре нет слова "{{ unstressed_word }}"</strong></p>
             <fieldset>
                 <legend><h3>Выберите вариант с правильным ударением:</h3></legend><br>
                 <form action="{% url 'rhyme:rhyme_results' %}" method="post">
                     {% for stressed_variant in all_stresses %}
                         {% csrf_token %}
-                        <script>
-                            const elem = document.getElementById("input_word_to_rhyme");
-                            elem.remove();
-                        </script>
                         <input type="radio" id="variant"{{ forloop.counter }} name = "target_word" value="{{ stressed_variant }}">
                         <label for="variant"{{ forloop.counter }}>{{ stressed_variant }}</label><br>
-                    {% endfor %}<br><br>
-                    <button id="button_find_rhyme_on_rhyme" class="btn btn-success" type="submit">
+                    {% endfor %}<br>
+                    <button id="button_select_stress" class="btn" type="submit">
                         <span>Подобрать</span>
                     </button>
-                </form>
+					<div id="spinner_stress" class="spinner-border" role="status" style="display:none"></div>
+                 </form>
             </fieldset>
         {% endif %}
     </div>
 
 
-{#<script src="{% static 'js/rhyme.js' %}"></script>#}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  let buttonElementWord = document.getElementById("button_find_rhyme_on_rhyme");
+  let buttonElementStress = document.getElementById("button_select_stress");
+
+  if (buttonElementWord) {
+    buttonElementWord.addEventListener("click", function() {
+		let spinnerElement = document.getElementById("spinner_word");
+		spinnerElement.style.display = "block";
+    });
+  };
+  if (buttonElementStress) {
+    buttonElementStress.addEventListener("click", function() {
+		let spinnerElement = document.getElementById("spinner_stress");
+		spinnerElement.style.display = "block";
+    });
+  };
+});
+</script>
+
 {% endblock %}
