@@ -40,44 +40,8 @@
 					  <div class="card-body">
 						<div>
 						
+							{{ rhyme_html|safe }}
 
-							<h2 id="-">Теория рифмования</h2>
-							<ol>
-							<li>Рифмуются не буквы, а звуки. Каждое слово транскрибуруется по правилам <a href="https://tinyurl.com/59nmeuhb">IPA</a>. Поэтому &quot;Снится&quot;/ &quot;синица&quot; - это близкая рифма. 2. Для подбора рифм имеют значения: <ul>
-							<li>только ударный гласный + все звуки после него + при наличии согласный перед ним. Например, в слове &quot;колесо&quot; алгоритмом учитывается только [со]. </li>
-							<li>позиция звука, которая считается от ударного гласного. В паре &quot;дом&quot; / &quot;ком&quot;, &quot;о&quot; - позиция 1, &quot;д&quot; и &quot;к&quot; занимают позицию 0, а звуки &quot;м&quot; позицию 2. </li>
-							</ul>
-							</li>
-							<li>Пара &quot;облако&quot; / &quot;о&#39;кала&quot; имеют большинство одинаковых звуков, которые, однако, располагаются на разных позициях. Поэтому данная пара квалифицируется не как рифма, а как созвучие (ассонанас + консонанс).</li>
-							<li>Отношения между парами созвучных слов описываются рифмическими паттернами. Например, слова &quot;рог&quot; / &quot;пирог&quot; имеют следующий паттерн: (&#39;same_cons&#39;, &#39;same_stressed&#39;, &#39;same_cons&#39;).</li>
-							<li>В рифмованных словах звуки имеют свои созвучные пары, которые я обозначаю следующими символами:<ul>
-							<li><strong>same_cons</strong> = тот же самый согласный на той же позиции в обоих словах: &quot;дом&quot; - &quot;ком&quot;: &quot;м&quot; на позиции 2.</li>
-							<li><strong>same_stressed_v</strong> = тот же самый ударный гласный &quot;о&quot; на позиции 1.</li>
-							<li><strong>near_stressed_v</strong> = гласная и её йотированная пара как о-ё в словах &quot;дом&quot; - &quot;ёд&quot;</li>
-							<li><strong>same_v</strong> = одинаковая гласная на соответствующих позициях, как &#39;а&#39; в паре &quot;кобра&quot; - &quot;вобла&quot;.</li>
-							<li><strong>voice</strong> = звонкий/ глухой согласный, который соответствует глухому/ звонкому: последние звуки пары &quot;дрожь&quot; - &quot;вошь&quot;. </li>
-							<li><strong>any_cons</strong> = любой согласный на тех же позициях.</li>
-							<li><strong>any_v</strong> = любой гласный.</li>
-							<li><strong>no_sound</strong> = пропущенный звук на соответствующей позиции: &quot;дом&quot; - &quot;дзюдо&quot;, &#39;м&#39; - звук, пропущенный в конце второго слова: (&#39;same_cons&#39;, &#39;same_stressed&#39;, &#39;no_sound&#39;).</li>
-							<li><strong>add_sound</strong> = добавленный звук: в паре &quot;дом&quot; - &quot;гнедому&quot;, звук &#39;у&#39; добавлен: (&#39;same_cons&#39;, &#39;same_stressed&#39;, &#39;same_cons&#39;, &#39;add_sound&#39;).</li>
-							</ul>
-							</li>
-							<li>Степень рифмического соответствия - это континуум, в котором ухо само решает, где слова еще гармонируют друг с другом, а где уже нет. </li>
-							<li>Каждому рифмованному слову присваивается штраф:<ul>
-							<li><strong>0</strong> - &quot;время&quot;/ &quot;бремя&quot;: (&#39;same_cons&#39;, &#39;same_stressed&#39;, &#39;same_cons&#39;, &#39;same_v&#39;) - полное совпадение всех звуков, нулевой штраф. </li>
-							<li><strong>1</strong> - &quot;конь&quot;/ &quot;огонь&quot;: (&#39;voice&#39;, &#39;same_stressed&#39;, &#39;same_cons&#39;) - согласные перед ударным гласным соотносятся как глухой &quot;к&quot; и звонкий &quot;г&quot;.</li>
-							<li><strong>5</strong> - &quot;вода&quot;/ &quot;воздал&quot;: (&#39;same_cons&#39;, &#39;same_stressed&#39;, &#39;add_sound&#39;) - в конце второго слова добавлен звук &quot;л&quot;.</li>
-							<li><strong>6</strong> - &quot;вода&quot;/ &quot;атак&quot;: (&#39;voice&#39;, &#39;same_stressed&#39;, &#39;add_sound&#39;) - согласные предшествующие ударному гласному соотносятся как звонкий &quot;д&quot; - глухой &quot;т&quot;, плюс ко второму слову добавлен звук &quot;&quot;к. Рифма достаточно далекая, соответственно и штраф большой.</li>
-							</ul>
-							</li>
-							<li>Степень созвучия вычисляется по формуле, которая учитывает ряд факторов, прежде всего, наличие в слове ассонансов/ консонансов, а также длину слова. Если для расчёта рифмической дистанции между словами учитывается позиция звуков, то для созвучности это не имеет значение. Как следствие, наиболее интересные созвучия имеют далёкий балл рифмической несхожести и близкий балл в континууме ассонанс-консонанс.<ul>
-							<li><strong>штраф: 11, созвучие: 1</strong> - &quot;беженец&quot;/ &quot;невеже&quot; - (&#39;any_cons&#39;, &#39;same_stressed&#39;, &#39;same_cons&#39;, &#39;same_v&#39;, &#39;no_sound&#39;, &#39;no_sound&#39;).</li>
-							<li><strong>штраф: 13, созвучие: 1</strong> - &quot;олово&quot;/ &quot;отлов&quot; - (&#39;any_cons&#39;, &#39;same_stressed&#39;, &#39;same_cons&#39;, &#39;same_v&#39;, &#39;no_sound&#39;, &#39;no_sound&#39;).</li>
-							</ul>
-							</li>
-							</ol>
-
-						
 						</div>
 					  </div>
 					</div>
@@ -85,14 +49,18 @@
 				<div class="tab-pane fade" id="stress" role="tabpanel" aria-labelledby="contact-tab">
 					<div class="card" id="stress_card">
 					  <div class="card-body">
-						<div>Stress</div>
+						  <div>
+							  {{ stress_html|safe}}
+						  </div>
 					  </div>
 					</div>
 				</div>
 				<div class="tab-pane fade" id="transcribe" role="tabpanel" aria-labelledby="contact-tab">
 					<div class="card" id="transcribe_card">
 					  <div class="card-body">
-						<div>Transcribe</div>
+						  <div>
+							  {{ transcribe_html|safe }} 
+						  </div>
 					  </div>
 					</div>
 				</div>
@@ -102,14 +70,8 @@
 			<div class="row">
 				<div class="col">
 					<div class="card" id="initial_card">
-					  <div class="card-header">
-						Первый открытый алгоритм для подбора рифм на русском языке.
-					  </div>
 					  <div class="card-body">
-						<blockquote class="blockquote mb-0">
-						  <p>В основе: en.wiktionary.org, две авторские нейросети.</p>
-						  <footer class="blockquote-footer">Автор проекта и разработчик: <cite title="Source Title">Евгений Проскуликов</cite></footer>
-						</blockquote>
+						  {{ author_html|safe }}
 					  </div>
 					</div>
 				</div>

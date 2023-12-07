@@ -5,3 +5,4 @@ Django~=4.2
 psycopg2~=2.9.5
 rhyme_rus@ git+https://github.com/EugenefedorovPro/rhyme_rus.git
 django-filter~=23.1
+markdown2~=2.4.11
